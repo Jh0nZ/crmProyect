@@ -4,15 +4,20 @@
 $repo_dir = '/var/www/html/adrmrk.site/public_html';
 
 // Ejecuta el comando git pull
-exec("cd $repo_dir && git pull origin main > git_log.txt 2>&1", $output, $return_code);
+$output = shell_exec("cd $repo_dir && git pull origin main");
 
-
-// Verifica el código de salida del comando
-if ($return_code !== 0) {
-    echo "Error al ejecutar el comando. Código de salida: $return_code";
+// Verifica si el comando se ejecutó correctamente
+if ($output === null) {
+    echo "Error al ejecutar el comando.";
 } else {
-    echo "Comando ejecutado correctamente. Salida: " . implode("\n", $output);
+    echo "Comando ejecutado correctamente. Salida: $output";
 }
+
+$uid = posix_geteuid();
+
+$user = posix_getpwuid($uid);
+
+echo $user['name'];
 
 echo "testeando";
 ?>
