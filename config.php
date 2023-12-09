@@ -2,5 +2,5 @@
 $server = "localhost";
 $username = "jhon";
 $password = "jhon";
-$database = "crmProyect";
+$database = "crm";
 ?>
