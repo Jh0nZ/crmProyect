@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <h2>Registro de Usuario</h2>
-    <form action="<?php echo htmlspecialchars("144.22.42.206/test.php"); ?>" method="post">
+    <form action="test.php" method="post">
         <label for="nombre">Nombre:</label>
         <input type="text" name="nombre" required><br>
 
