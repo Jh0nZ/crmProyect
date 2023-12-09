@@ -1,23 +1,8 @@
 <?php
-
-// Establece la ruta al directorio del repositorio Git
-$repo_dir = '/var/www/html/adrmrk.site/public_html';
-
-// Ejecuta el comando git pull
-$output = shell_exec("cd $repo_dir && git pull origin main");
-
-// Verifica si el comando se ejecutó correctamente
-if ($output === null) {
-    echo "Error al ejecutar el comando.";
-} else {
-    echo "Comando ejecutado correctamente. Salida: $output";
-}
-
-$uid = posix_geteuid();
-
-$user = posix_getpwuid($uid);
-
-echo $user['name'];
-
-echo "testeando";
+// Cambia el directorio al del repositorio
+chdir("/var/www/html/adrmrk.site/public_html");
+// Ejecuta el comando git pull origin main
+exec("git pull origin main 2>&1", $output);
+// Muestra la salida del comando
+echo "<pre>" . implode("\n", $output) . "</pre>";
 ?>
