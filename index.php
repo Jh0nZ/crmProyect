@@ -1,57 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login y Register - MagtimusPro</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-
-
-    <link rel="stylesheet" href="assets/css/estilos.css">
-</head>
-<body>
-
-        <main>
-
-            <div class="contenedor__todo">
-                <div class="caja__trasera">
-                    <div class="caja__trasera-login">
-                        <h3>¿Ya tienes una cuenta?</h3>
-                        <p>Inicia sesión para entrar en la página</p>
-                        <button id="btn__iniciar-sesion">Iniciar Sesión</button>
-                    </div>
-                    <div class="caja__trasera-register">
-                        <h3>¿Aún no tienes una cuenta?</h3>
-                        <p>Regístrate para que puedas iniciar sesión</p>
-                        <button id="btn__registrarse">Regístrarse</button>
-                    </div>
-                </div>
-
-                <!--Formulario de Login y registro-->
-                <div class="contenedor__login-register">
-                    <!--Login-->
-                    <form action="" class="formulario__login">
-                        <h2>Iniciar Sesión</h2>
-                        <input type="text" placeholder="Correo Electronico">
-                        <input type="password" placeholder="Contraseña">
-                        <button>Entrar</button>
-                    </form>
-
-                    <!--Register-->
-                    <form action="" class="formulario__register">
-                        <h2>Regístrarse</h2>
-                        <input type="text" placeholder="Nombre completo">
-                        <input type="text" placeholder="Correo Electronico">
-                        <input type="text" placeholder="Usuario">
-                        <input type="password" placeholder="Contraseña">
-                        <button>Regístrarse</button>
-                    </form>
-                </div>
-            </div>
-
-        </main>
-
-        <script src="assets/js/script.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bootstrap Login Page</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body class="bg-info d-flex justify-content-center align-items-center vh-100">
+    <div
+      class="bg-white p-5 rounded-5 text-secondary shadow"
+      style="width: 25rem"
+    >
+      <div class="d-flex justify-content-center">
+        <img
+          src="/assets/login-icon.svg"
+          alt="login-icon"
+          style="height: 7rem"
+        />
+      </div>
+      <div class="text-center fs-1 fw-bold">Login</div>
+      <div class="input-group mt-4">
+        <div class="input-group-text bg-info">
+          <img
+            src="/assets/username-icon.svg"
+            alt="username-icon"
+            style="height: 1rem"
+          />
+        </div>
+        <input
+          class="form-control bg-light"
+          type="text"
+          placeholder="Username"
+        />
+      </div>
+      <div class="input-group mt-1">
+        <div class="input-group-text bg-info">
+          <img
+            src="/assets/password-icon.svg"
+            alt="password-icon"
+            style="height: 1rem"
+          />
+        </div>
+        <input
+          class="form-control bg-light"
+          type="password"
+          placeholder="Password"
+        />
+      </div>
+      <div class="d-flex justify-content-around mt-1">
+        <div class="d-flex align-items-center gap-1">
+          <input class="form-check-input" type="checkbox" />
+          <div class="pt-1" style="font-size: 0.9rem">Remember me</div>
+        </div>
+        <div class="pt-1">
+          <a
+            href="#"
+            class="text-decoration-none text-info fw-semibold fst-italic"
+            style="font-size: 0.9rem"
+            >Forgot your password?</a
+          >
+        </div>
+      </div>
+      <div class="btn btn-info text-white w-100 mt-4 fw-semibold shadow-sm">
+        Login
+      </div>
+      <div class="d-flex gap-1 justify-content-center mt-1">
+        <div>Don't have an account?</div>
+        <a href="#" class="text-decoration-none text-info fw-semibold"
+          >Register</a
+        >
+      </div>
+      <div class="p-3">
+        <div class="border-bottom text-center" style="height: 0.9rem">
+          <span class="bg-white px-3">or</span>
+        </div>
+      </div>
+      <div
+        class="btn d-flex gap-2 justify-content-center border mt-3 shadow-sm"
+      >
+        <img
+          src="/assets/google-icon.svg"
+          alt="google-icon"
+          style="height: 1.6rem"
+        />
+        <div class="fw-semibold text-secondary">Continue with Google</div>
+      </div>
+    </div>
+  </body>
 </html>
