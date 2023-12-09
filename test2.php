@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testear GET a sí mismo</title>
+    <title>Testear POST a sí mismo</title>
 </head>
 <body>
 
 <?php
-// Comprobar si hay parámetros GET
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && !empty($_GET)) {
-    echo '<h2>Parámetros GET recibidos:</h2>';
+// Comprobar si hay datos POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {
+    echo '<h2>Datos POST recibidos:</h2>';
     echo '<pre>';
-    print_r($_GET);
+    print_r($_POST);
     echo '</pre>';
 }
 ?>
 
-<!-- Formulario de prueba con método GET -->
-<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get">
-    <label for="parametro">Parámetro de prueba:</label>
-    <input type="text" name="parametro" id="parametro">
+<!-- Formulario de prueba con método POST -->
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+    <label for="dato">Dato de prueba:</label>
+    <input type="text" name="dato" id="dato">
     <button type="submit">Enviar</button>
 </form>
 
