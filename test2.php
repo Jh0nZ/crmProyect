@@ -20,7 +20,7 @@ try {
     $password = password_hash("secure_password", PASSWORD_DEFAULT);
 
     // Consulta de inserción
-    $sql = "INSERT INTO usuarios (nombre, apellido, username, password) VALUES ('$nombre', '$apellido', '$username', '$password')";
+    $sql = "INSERT INTO Usuarios (nombre, apellido, username, password) VALUES ('$nombre', '$apellido', '$username', '$password')";
 
     if ($conn->query($sql) === TRUE) {
         echo "Registro insertado correctamente";
