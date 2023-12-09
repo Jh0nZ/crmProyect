@@ -1,6 +1,6 @@
 <?php
 $server = "localhost";
-$username = "root";
-$password = "";
-$database = "crmDatabase";
+$username = "jhon";
+$password = "jhon";
+$database = "crmProyect";
 ?>

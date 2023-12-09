@@ -23,7 +23,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
     // Insertar nuevo usuario en la tabla Usuarios
-    $sql = "INSERT INTO Usuario (username, password) VALUES ('$username', '$password')";
+    $sql = "INSERT INTO usuarios (username, password) VALUES ('$username', '$password')";
 
     if ($conn->query($sql) === TRUE) {
         echo "Registro exitoso. Ahora puedes iniciar sesión.";
