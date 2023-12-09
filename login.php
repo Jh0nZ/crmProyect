@@ -23,13 +23,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
     $password = $_POST['password'];
 
     // Buscar al usuario en la base de datos
-    $sql = "SELECT * FROM usuarios WHERE username='$username'";
+    $sql = "SELECT * FROM user WHERE username='$username'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         if (password_verify($password, $row['password'])) {
-            $_SESSION['user_id'] = $row['usuario_id'];
+            $_SESSION['user_id'] = $row['user_id'];
             header("Location: dashboard.php");
             exit;
         } else {
