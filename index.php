@@ -1,59 +1,57 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda Online de Prueba</title>
-    <!-- Agrega tus enlaces a hojas de estilo CSS aquí -->
+    <title>Login y Register - MagtimusPro</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="assets/css/estilos.css">
 </head>
 <body>
 
-<header>
-    <h1>Tienda Online de Prueba</h1>
-    <!-- Puedes agregar un menú de navegación aquí -->
-</header>
+        <main>
 
-<main>
-    <section>
-        <h2>Productos Destacados</h2>
-        <!-- Muestra los productos destacados con sus detalles -->
-        <div class="producto">
-            <img src="producto1.jpg" alt="Producto 1">
-            <h3>Producto 1</h3>
-            <p>Descripción del producto. Precio: $XX.XX</p>
-            <button>Agregar al Carrito</button>
-        </div>
+            <div class="contenedor__todo">
+                <div class="caja__trasera">
+                    <div class="caja__trasera-login">
+                        <h3>¿Ya tienes una cuenta?</h3>
+                        <p>Inicia sesión para entrar en la página</p>
+                        <button id="btn__iniciar-sesion">Iniciar Sesión</button>
+                    </div>
+                    <div class="caja__trasera-register">
+                        <h3>¿Aún no tienes una cuenta?</h3>
+                        <p>Regístrate para que puedas iniciar sesión</p>
+                        <button id="btn__registrarse">Regístrarse</button>
+                    </div>
+                </div>
 
-        <div class="producto">
-            <img src="producto2.jpg" alt="Producto 2">
-            <h3>Producto 2</h3>
-            <p>Descripción del producto. Precio: $XX.XX</p>
-            <button>Agregar al Carrito</button>
-        </div>
+                <!--Formulario de Login y registro-->
+                <div class="contenedor__login-register">
+                    <!--Login-->
+                    <form action="" class="formulario__login">
+                        <h2>Iniciar Sesión</h2>
+                        <input type="text" placeholder="Correo Electronico">
+                        <input type="password" placeholder="Contraseña">
+                        <button>Entrar</button>
+                    </form>
 
-        <!-- Repite esta estructura para otros productos -->
-    </section>
+                    <!--Register-->
+                    <form action="" class="formulario__register">
+                        <h2>Regístrarse</h2>
+                        <input type="text" placeholder="Nombre completo">
+                        <input type="text" placeholder="Correo Electronico">
+                        <input type="text" placeholder="Usuario">
+                        <input type="password" placeholder="Contraseña">
+                        <button>Regístrarse</button>
+                    </form>
+                </div>
+            </div>
 
-    <section>
-        <h2>Carrito de Compras</h2>
-        <!-- Muestra los productos en el carrito con la opción de eliminar o actualizar la cantidad -->
-        <ul>
-            <li>Producto 1 - Cantidad: 2 - Precio Total: $XX.XX</li>
-            <li>Producto 2 - Cantidad: 1 - Precio Total: $XX.XX</li>
-            <!-- Repite esta estructura para otros productos en el carrito -->
-        </ul>
+        </main>
 
-        <h3>Total del Carrito: $XX.XX</h3>
-
-        <button>Realizar Pedido</button>
-    </section>
-</main>
-
-<footer>
-    <p>&copy; <?php echo date("Y"); ?> Tienda Online de Prueba. Todos los derechos reservados.</p>
-</footer>
-
-<!-- Agrega tus enlaces a scripts JavaScript aquí, si es necesario -->
-
+        <script src="assets/js/script.js"></script>
 </body>
 </html>
