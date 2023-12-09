@@ -1,6 +1,6 @@
 <?php
 // Configuración de la conexión a la base de datos
-$servername = "localhost";
+$servername = "adrmrk.site";
 $username = "jhon";
 $password = "jhon";
 $database = "crmProyect";
