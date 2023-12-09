@@ -5,7 +5,7 @@ chdir("/var/www/html/adrmrk.site/public_html");
 $keyPath = "/root/.ssh/id_ed25519";
 
 // Execute the command with the key path
-exec("git pull origin main -i $keyPath 2>&1", $output);
+exec("git pull origin main $keyPath 2>&1", $output);
 // Muestra la salida del comando
 echo "<pre>" . implode("\n", $output) . "</pre>";
 ?>
