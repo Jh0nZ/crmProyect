@@ -1,0 +1,22 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    background: #f10000;
+    background: linear-gradient(rgba(1, 141, 255, 0.6), rgba(0, 0, 0, 0.4)), url('../images/business.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
+
+body::before {
+    background: #f10000;
+    background-image: url('../images/crmBackground.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
