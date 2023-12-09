@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
     $username = $_POST['username'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-    $check_user_query = "SELECT * FROM user WHERE username = '$user_username'";
+    $check_user_query = "SELECT * FROM user WHERE username = '$username'";
     $result = $conn->query($check_user_query);
 
     if ($result->num_rows > 0) {
