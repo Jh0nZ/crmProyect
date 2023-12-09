@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "jhon";
 $password = "jhon";
-$database = "crmProyect";
+$database = "crm";
 
 try {
     // Crear conexión
@@ -20,7 +20,7 @@ try {
     $password = password_hash("secure_password", PASSWORD_DEFAULT);
 
     // Consulta de inserción
-    $sql = "INSERT INTO Usuarios (nombre, apellido, username, password) VALUES ('$nombre', '$apellido', '$username', '$password')";
+    $sql = "INSERT INTO user (first_name, last_name, username, password) VALUES ('$nombre', '$apellido', '$username', '$password')";
 
     if ($conn->query($sql) === TRUE) {
         echo "Registro insertado correctamente";
