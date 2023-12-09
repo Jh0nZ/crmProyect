@@ -62,10 +62,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
 
     <form action="" method="post">
         <label for="first_name">Nombre:</label>
-        <input type="text" name="username" required><br>
+        <input type="text" name="first_name" required><br>
 
         <label for="last_name">Apellido:</label>
-        <input type="text" name="username" required><br>
+        <input type="text" name="last_name" required><br>
 
         <label for="username">Nombre de usuario:</label>
         <input type="text" name="username" required><br>
