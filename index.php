@@ -11,7 +11,7 @@ if (isset($_SESSION['user_id'])) {
 // Procesar el formulario de registro
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
     // Conectar a la base de datos
-    $conn = new mysqli($server, $username, $password, $database);
+    $conn = new mysqli($database_server, $database_username, $database_password, $database_database);
 
     // Verificar la conexión
     if ($conn->connect_error) {
@@ -25,13 +25,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
     $username = $_POST['username'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-    // Insertar nuevo usuario en la tabla Usuarios
-    $sql = "INSERT INTO user (first_name, last_name, username, password) VALUES ('$first_name', '$last_name', '$username', '$password')";
+    $check_user_query = "SELECT * FROM user WHERE username = '$user_username'";
+    $result = $conn->query($check_user_query);
 
-    if ($conn->query($sql) === TRUE) {
-        echo "Registro exitoso. Ahora puedes iniciar sesión.";
+    if ($result->num_rows > 0) {
+        echo "El nombre de usuario ya está en uso. Por favor, elige otro.";
     } else {
-        echo "Error al registrar usuario: " . $conn->error;
+        // Insertar nuevo usuario en la tabla Usuarios
+        $sql = "INSERT INTO user (first_name, last_name, username, password) VALUES ('$first_name', '$last_name', '$username', '$password')";
+
+        if ($conn->query($sql) === TRUE) {
+            echo "Registro exitoso. Ahora puedes iniciar sesión.";
+        } else {
+            echo "Error al registrar usuario: " . $conn->error;
+        }
     }
 
     // Cerrar la conexión

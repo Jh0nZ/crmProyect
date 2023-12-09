@@ -11,7 +11,7 @@ if(isset($_SESSION['user_id'])) {
 // Procesar el formulario de inicio de sesión
 if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
     // Conectar a la base de datos
-    $conn = new mysqli($server, $username, $password, $database);
+    $conn = new mysqli($database_server, $database_username, $database_password, $database_database);
 
     // Verificar la conexión
     if ($conn->connect_error) {
