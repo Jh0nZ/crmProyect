@@ -9,7 +9,7 @@
     <ul id="messages"></ul>
 
     <script>
-        const socket = new WebSocket('wss://adrmrk.site:8080/resources/pruebaLibreria/');
+        const socket = new WebSocket('wss://adrmrk.site:8080');
         socket.addEventListener('message', function (event) {
             const messages = document.getElementById('messages');
             const li = document.createElement('li');
