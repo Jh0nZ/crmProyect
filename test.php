@@ -12,6 +12,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 } else {
     // If the request method is not POST, display an error
     http_response_code(405); // Method Not Allowed
-    echo "Invalid request method. Only POST requests are allowed.";
+    echo "Invalid request method. Onl POST requests are allowed.";
 }
 ?>
