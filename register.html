@@ -149,6 +149,31 @@
 
         })();
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('registerForm').addEventListener('submit', function (event) {
+                event.preventDefault();
+    
+                fetch('resources/include/register.php', {
+                    method: 'POST',
+                    body: new FormData(this),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Éxito, mostrar mensaje y realizar acciones adicionales si es necesario
+                        alert(data.message);
+                        // Redirigir a otra página, actualizar el contenido, etc.
+                    } else {
+                        // Error, mostrar mensaje de error
+                        alert(data.message);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        });
+    </script>
+    
 </body>
 
 </html>
