@@ -97,7 +97,6 @@
             
             loginForm.addEventListener('submit', function (event) {
                 event.preventDefault(); // Prevenir el envío por defecto del formulario
-
                 if (loginForm.checkValidity()) {
                     const formData = new FormData(this);
 
@@ -108,6 +107,7 @@
                         .then(response => response.json())
                         .then(data => {
                             if (data.success) {
+                                loginForm.classList.add('was-validated');
                                 window.location.href = 'leads.html';
                             } else {
                                 loginForm.classList.remove('was-validated');
@@ -127,28 +127,11 @@
                             }
                         })
                         .catch(error => console.error('Error:', error));
+                } else {
+                    event.stopPropagation();
                 }
             });
         });
-    </script>
-    <script>
-        (() => {
-            'use strict'
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            const forms = document.querySelectorAll('.needs-validation')
-
-            // Loop over them and prevent submission
-            Array.from(forms).forEach(form => {
-                form.addEventListener('submit', event => {
-                    if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
-                    }
-
-                    form.classList.add('was-validated')
-                }, false)
-            })
-        })()
     </script>
 </body>
 
