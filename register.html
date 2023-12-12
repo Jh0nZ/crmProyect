@@ -7,6 +7,19 @@
     <title>Registro</title>
     <link rel="stylesheet" href="resources/lib/bootstrap.min.css">
     <script defer src="resources/lib/bootstrap.bundle.min.js"></script>
+    <script>
+        // verificamos si no se cerro sesion
+        fetch('resources/include/sesion.php', {
+            method: 'POST',
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                window.location.href = 'leads.html';
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    </script>
     <style>
         body {
             padding-top: 20px;
@@ -33,7 +46,6 @@
         }
     </style>
 </head>
-
 <body>
 
     <div class="container register-container">
@@ -176,5 +188,4 @@
 
 
 </body>
-
 </html>
