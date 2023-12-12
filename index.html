@@ -16,6 +16,19 @@
         .registrate {
             text-align: center;
         }
+
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        #loginForm {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
     </style>
 </head>
 
@@ -27,8 +40,7 @@
                 <h3 class="mb-0">Inicio de Sesión</h3>
             </div>
             <div class="card-body">
-                <form id="loginForm" class="needs-validation" action="resources/include/login.php" method="post"
-                    novalidate>
+                <form id="loginForm" class="needs-validation" action="resources/include/login.php" method="post" novalidate>
                     <div class="form-group">
                         <label for="username">Usuario:</label>
                         <input type="text" class="form-control" id="username" name="username" required>
@@ -50,34 +62,30 @@
                         </button>
                         <div class="col-lg-4 col-sm-3"></div>
                     </div>
-
-                    <div class="row">
-                        <div class="col-lg-4 col-sm-3" ></div>
-                        <button class="btn col-lg-4 col-sm-6 btn-light btn-block ">
-                            Iniciar sesión con google
-                            <svg class="bi text-google" width="32" height="32" fill="currentColor">
-                                <use xlink:href="resources/icons/bootstrap-icons.svg#google" />
-                            </svg>
-                        </button>
-                        <div class="col-lg-4 col-sm-3"></div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-lg-4 col-sm-3"></div>
-                        <div class="col-lg-4 col-sm-6 registrate">
-                            <a href="">Nuevo usuario? Registrate</a>
-                        </div>
-                        <div class="col-lg-4 col-sm-3"></div>
-                    </div>
                 </form>
-
+                <div class="row">
+                    <div class="col-lg-4 col-sm-3" ></div>
+                    <button class="btn col-lg-4 col-sm-6 btn-light btn-block ">
+                        Iniciar sesión con google
+                        <svg class="bi text-google" width="32" height="32" fill="currentColor">
+                            <use xlink:href="resources/icons/bootstrap-icons.svg#google" />
+                        </svg>
+                    </button>
+                    <div class="col-lg-4 col-sm-3"></div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-sm-3"></div>
+                    <div class="col-lg-4 col-sm-6 registrate">
+                        <a href="">Nuevo usuario? Registrate</a>
+                    </div>
+                    <div class="col-lg-4 col-sm-3"></div>
+                </div>
             </div>
         </div>
     </div>
     <script>
         (() => {
             'use strict'
-
             // Fetch all the forms we want to apply custom Bootstrap validation styles to
             const forms = document.querySelectorAll('.needs-validation')
 
