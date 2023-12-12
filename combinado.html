@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Navbar Bootstrap</title>
+
+    <!-- Agrega el enlace al archivo CSS de Bootstrap (puedes utilizar el CDN o descargarlo localmente) -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+       .container-fluid {
+        height: 100vh;
+       }
+       .row {
+        height: 100%;
+       }
+       .col-lg-1 {
+        background-color: red;
+       }
+       .col-md-2 {
+        background-color: pink;
+       }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Barra lateral izquierda (visible en escritorio) -->
+            <nav class="col-lg-1 col-md-2 d-none d-md-block">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span class="oi oi-home"></span> Inicio
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span class="oi oi-list-rich"></span> Opción 1
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span class="oi oi-cloud"></span> Opción 2
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span class="oi oi-pencil"></span> Opción 3
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span class="oi oi-grid-three-up"></span> Opción 4
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span class="oi oi-cog"></span> Opción 5
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Contenido principal -->
+            <main role="main" class="col-lg-11 col-md-10 col-12">
+                <h1>Contenido de la página</h1>
+            </main>
+        </div>
+    </div>
+
+    <!-- Barra inferior (visible en dispositivos móviles) -->
+    <nav class="navbar fixed-bottom navbar-light bg-light d-block d-md-none">
+        <div class="d-flex flex-row">
+            <a class="nav-link" href="#">Inicio</a>
+            <a class="nav-link" href="#">Opción 1</a>
+            <a class="nav-link" href="#">Opción 2</a>
+            <a class="nav-link" href="#">Opción 3</a>
+            <a class="nav-link" href="#">Opción 4</a>
+            <a class="nav-link" href="#">Opción 5</a>
+        </div>
+    </nav>
+
+    <!-- Agrega el enlace al archivo JS de Bootstrap (puedes utilizar el CDN o descargarlo localmente) -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

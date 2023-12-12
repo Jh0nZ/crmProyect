@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="resources/lib/bootstrap.bundle.min.js">
+    <link rel="stylesheet" href="resources/lib/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/draggable/1.0.0-beta.11/draggable.bundle.legacy.min.js"></script>
+
+    <style>
+        .swiper-container {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .swiper-wrapper {
+            display: flex;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .swiper-slide {
+
+            flex: 0 0 auto;
+            width: 100%;
+            /* Cambiado a 100% para ocupar todo el ancho en dispositivos móviles */
+        }
+
+        .fase {
+            height: 90vh;
+            padding: 10px;
+        }
+        
+        .fase div {
+            background-color:chartreuse;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+            border:1px black solid;
+        }
+
+        /* Media query para pantallas más grandes (ej. 768px) */
+        @media (min-width: 768px) {
+            .swiper-slide {
+                max-width: 500px;
+                margin-right: 15px;
+            }
+
+            .swiper-container {
+                overflow-y: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <div class="d-flex-column justify-content-center align-items-center fase" style="background-color: #e74c3c;">
+                <div class="draggable-item">
+                    Contenido adicional 1
+                </div>
+                <div class="draggable-item">
+                    Contenido adicional 2
+                </div>
+                <div class="draggable-item">
+                    Contenido adicional 3
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="d-flex-column justify-content-center align-items-center fase" style="background-color: #3498db;">
+                <div class="draggable-item">
+                    Contenido adicional 4
+                </div>
+                <div class="draggable-item">
+                    Contenido adicional 5
+                </div>
+                <div class="draggable-item">
+                    Contenido adicional 6
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 'auto',
+            spaceBetween: 15,
+        });
+    </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var draggable = new Draggable.Sortable(document.querySelectorAll('.fase'), {
+            draggable: '.draggable-item',
+            mirror: {
+                constrainDimensions: true,
+            },
+        });
+    });
+</script>
+
+</body>
+
+</html>
