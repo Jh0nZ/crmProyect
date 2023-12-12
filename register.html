@@ -61,7 +61,7 @@
                     <div class="form-group">
                         <label for="username">Usuario:</label>
                         <input type="text" class="form-control" id="username" name="username" required>
-                        <div class="invalid-feedback">
+                        <div id="usernameError" class="invalid-feedback">
                             Por favor ingrese un nombre de usuario.
                         </div>
                     </div>
@@ -152,6 +152,8 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('registerForm').addEventListener('submit', function (event) {
+                const usernameInput = document.getElementById('username');
+                const usernameError = document.getElementById('usernameError');
                 event.preventDefault();
     
                 fetch('resources/include/register.php', {
@@ -165,8 +167,13 @@
                         alert(data.message);
                         // Redirigir a otra página, actualizar el contenido, etc.
                     } else {
-                        // Error, mostrar mensaje de error
-                        alert(data.message);
+                        if (data.message) {
+                            usernameInput.classList.add('is-invalid');
+                            usernameError.textContent = data.message;
+                        } else {
+                            usernameInput.classList.remove('is-invalid');
+                            usernameError.textContent = "Por favor ingrese un nombre de usuario.";
+                        }
                     }
                 })
                 .catch(error => console.error('Error:', error));
