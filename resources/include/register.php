@@ -23,8 +23,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $insertUserSql = "INSERT INTO user (first_name, last_name, username, password) VALUES ('$first_name', '$last_name', '$username', '$password')";
         if ($conn->query($sql) === TRUE) {
             $_SESSION["username"] = $username;
-            header("Location: dashboard.php");
-            
             $response = array("success" => true, "message" => "Usuario registrado exitosamente");
         } else {
             $response = array("success" => false, "message" => "Error al registrar el usuario: " . $conn->error);
