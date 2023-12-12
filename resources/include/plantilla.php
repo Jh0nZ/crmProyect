@@ -26,7 +26,7 @@
         }
 
         ?>
-        <a href='../../logout.php' class="cerrar-sesion">Cerrar Sesión</a>
+        <a href='logout.php' class="cerrar-sesion">Cerrar Sesión</a>
         
     </div>
     <?php echo $contenido; ?>
