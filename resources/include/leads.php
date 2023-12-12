@@ -1,4 +1,15 @@
 <!-- pagina1.php -->
+
+<?php
+session_start();
+
+// Verificar si el usuario está autenticado
+if(!isset($_SESSION['username'])) {
+    header("Location: ../../index.html");
+    exit;
+}
+
+?>
 <?php
 $titulo_pagina = "Leads";
 $contenido_clase = "mostrar leads";

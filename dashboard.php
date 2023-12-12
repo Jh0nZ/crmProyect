@@ -8,3 +8,4 @@ if(!isset($_SESSION['username'])) {
 }
 
 header("Location: resources/include/leads.php");
+?>
