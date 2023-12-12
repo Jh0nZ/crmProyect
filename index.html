@@ -114,17 +114,16 @@
                                 if (data.message === "Nombre de usuario o contraseña incorrectos.") {
                                     passwordError.innerHTML = data.message;
                                     password.classList.add('is-invalid');
+                                    username.classList.remove('is-invalid');
                                 } else if (data.message === "El usuario no existe") {
                                     usernameError.innerHTML = data.message;
                                     username.classList.add('is-invalid');
+                                    password.classList.remove('is-invalid');
                                 } else {
                                     usernameError.innerHTML = data.message;
                                     username.classList.add('is-invalid');
+                                    password.classList.remove('is-invalid');
                                 }
-                                
-                                
-                                
-                                
                             }
                         })
                         .catch(error => console.error('Error:', error));
