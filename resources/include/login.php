@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($password, $storedPassword)) {
             // Inicio de sesión exitoso
             $_SESSION["username"] = $username;
-            header("Location: dashboard.html"); // Redirige a la página principal después del inicio de sesión
+            header("Location: dashboard.php"); // Redirige a la página principal después del inicio de sesión
         } else {
             // Inicio de sesión fallido
             echo "Nombre de usuario o contraseña incorrectos.";
