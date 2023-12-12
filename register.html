@@ -155,32 +155,34 @@
                 const usernameInput = document.getElementById('username');
                 const usernameError = document.getElementById('usernameError');
                 event.preventDefault();
-    
-                fetch('resources/include/register.php', {
-                    method: 'POST',
-                    body: new FormData(this),
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        // Éxito, mostrar mensaje y realizar acciones adicionales si es necesario
-                        alert(data.message);
-                        // Redirigir a otra página, actualizar el contenido, etc.
-                    } else {
-                        if (data.message) {
-                            usernameInput.classList.add('is-invalid');
-                            usernameError.textContent = data.message;
-                        } else {
-                            usernameInput.classList.remove('is-invalid');
-                            usernameError.textContent = "Por favor ingrese un nombre de usuario.";
-                        }
-                    }
-                })
-                .catch(error => console.error('Error:', error));
+
+                if (passwordsMatch()) {
+                    fetch('resources/include/register.php', {
+                        method: 'POST',
+                        body: new FormData(this),
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                // Éxito, mostrar mensaje y realizar acciones adicionales si es necesario
+                                alert(data.message);
+                                // Redirigir a otra página, actualizar el contenido, etc.
+                            } else {
+                                if (data.message) {
+                                    usernameInput.classList.add('is-invalid');
+                                    usernameError.textContent = data.message;
+                                } else {
+                                    usernameInput.classList.remove('is-invalid');
+                                    usernameError.textContent = "Por favor ingrese un nombre de usuario.";
+                                }
+                            }
+                        })
+                        .catch(error => console.error('Error:', error));
+                }
             });
         });
     </script>
-    
+
 </body>
 
 </html>
