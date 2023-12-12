@@ -107,6 +107,7 @@
                             if (data.success) {
                                 window.location.href = 'leads.html';
                             } else {
+                                loginForm.classList.remove('was-validated');
                                 username_error.innerHTML = data.message;
                                 username.classList.add('is-invalid');
                                 username.classList.add('is-invalid');
