@@ -110,73 +110,69 @@
         </div>
     </div>
     <script>
-        (() => {
-            'use strict';
+        const forms = document.querySelectorAll('.needs-validation');
 
-            const forms = document.querySelectorAll('.needs-validation');
-
-            Array.from(forms).forEach(form => {
-                form.addEventListener('submit', event => {
-                    if (!form.checkValidity() || !passwordsMatch()) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-
-                    form.classList.add('was-validated');
-                }, false);
-            });
-
-            function passwordsMatch() {
-                const passwordInput = document.getElementById('password');
-                const confirmPasswordInput = document.getElementById('confirm_password');
-
-                const password = passwordInput.value;
-                const confirmPassword = confirmPasswordInput.value;
-
-                const passwordsMatch = password === confirmPassword;
-
-                // Agregar o quitar la clase .is-invalid según si las contraseñas coinciden o no
-                if (passwordsMatch) {
-                    passwordInput.classList.remove('is-invalid');
-                    confirmPasswordInput.classList.remove('is-invalid');
-                } else {
-                    passwordInput.classList.add('is-invalid');
-                    confirmPasswordInput.classList.add('is-invalid');
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+                if (!form.checkValidity() || !passwordsMatch()) {
+                    event.preventDefault();
+                    event.stopPropagation();
                 }
 
-                return passwordsMatch;
+                form.classList.add('was-validated');
+            }, false);
+        });
+
+        function passwordsMatch() {
+            const passwordInput = document.getElementById('password');
+            const confirmPasswordInput = document.getElementById('confirm_password');
+
+            const password = passwordInput.value;
+            const confirmPassword = confirmPasswordInput.value;
+
+            const passwordsMatch = password === confirmPassword;
+
+            // Agregar o quitar la clase .is-invalid según si las contraseñas coinciden o no
+            if (passwordsMatch) {
+                passwordInput.classList.remove('is-invalid');
+                confirmPasswordInput.classList.remove('is-invalid');
+            } else {
+                passwordInput.classList.add('is-invalid');
+                confirmPasswordInput.classList.add('is-invalid');
             }
 
-        })();
-        document.getElementById('registerForm').addEventListener('submit', function (event) {
-                const usernameInput = document.getElementById('username');
-                const usernameError = document.getElementById('usernameError');
-                event.preventDefault();
+            return passwordsMatch;
+        }
 
-                if (passwordsMatch()) {
-                    fetch('resources/include/register.php', {
-                        method: 'POST',
-                        body: new FormData(this),
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.success) {
-                                // Éxito, mostrar mensaje y realizar acciones adicionales si es necesario
-                                alert(data.message);
-                                // Redirigir a otra página, actualizar el contenido, etc.
+        document.getElementById('registerForm').addEventListener('submit', function (event) {
+            const usernameInput = document.getElementById('username');
+            const usernameError = document.getElementById('usernameError');
+            event.preventDefault();
+
+            if (passwordsMatch()) {
+                fetch('resources/include/register.php', {
+                    method: 'POST',
+                    body: new FormData(this),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Éxito, mostrar mensaje y realizar acciones adicionales si es necesario
+                            alert(data.message);
+                            // Redirigir a otra página, actualizar el contenido, etc.
+                        } else {
+                            if (data.message) {
+                                usernameInput.classList.add('is-invalid');
+                                usernameError.textContent = data.message;
                             } else {
-                                if (data.message) {
-                                    usernameInput.classList.add('is-invalid');
-                                    usernameError.textContent = data.message;
-                                } else {
-                                    usernameInput.classList.remove('is-invalid');
-                                    usernameError.textContent = "Por favor ingrese un nombre de usuario.";
-                                }
+                                usernameInput.classList.remove('is-invalid');
+                                usernameError.textContent = "Por favor ingrese un nombre de usuario.";
                             }
-                        })
-                        .catch(error => console.error('Error:', error));
-                }
-            });
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+        });
     </script>
 
 
