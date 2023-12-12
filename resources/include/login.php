@@ -6,7 +6,8 @@ require_once("config.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn = new mysqli($database_server, $database_username, $database_password, $database_database);
     if ($conn->connect_error) {
-        die("Conexión fallida: " . $conn->connect_error);
+        $response["success"] = false;
+        $response["message"] = "Conexión fallida: " . $conn->connect_error;
     }
 
     $username = $_POST["username"];
@@ -24,18 +25,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($password, $storedPassword)) {
             // Inicio de sesión exitoso
             $_SESSION["username"] = $username;
-            header("Location: ../../dashboard.php"); // Redirige a la página principal después del inicio de sesión
+            $response["success"] = true;
+            $response["message"] = "Inicio de sesión exitoso";
         } else {
-            // Inicio de sesión fallido
-            echo "Nombre de usuario o contraseña incorrectos.";
+            $response["success"] = false;
+            $response["message"] = "Nombre de usuario o contraseña incorrectos.";
         }
     } else {
         // El usuario no existe
-        echo "Nombre de usuario o contraseña incorrectos.";
+        $response["success"] = false;
+        $response["message"] = "El usuario no existe";
     }
-
-
-    // Cerrar la conexión a la base de datos
     $conn->close();
+    // Devolver la respuesta como JSON
+    header('Content-Type: application/json');
+    echo json_encode($response);
 }
 ?>
