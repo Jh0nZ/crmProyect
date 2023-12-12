@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
         $insertUserSql = "INSERT INTO user (first_name, last_name, username, password) VALUES ('$first_name', '$last_name', '$username', '$password')";
-        if ($conn->query($sql) === TRUE) {
+        if ($conn->query($insertUserSql) === TRUE) {
             $_SESSION["username"] = $username;
             $response = array("success" => true, "message" => "Usuario registrado exitosamente");
         } else {
