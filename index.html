@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="resources/lib/bootstrap.min.css">
     <script defer src="resources/lib/bootstrap.bundle.min.js"></script>
+    <style>
+        .text-google {
+            color: #4285F4;
+            /* El color de Google es azul */
+        }
+
+        .registrate {
+            text-align: center;
+        }
+    </style>
 </head>
+
 <body>
 
     <div class="container login-container">
@@ -15,23 +27,69 @@
                 <h3 class="mb-0">Inicio de Sesión</h3>
             </div>
             <div class="card-body">
-                <form id="loginForm" action="resources/include/login.php" method="post">
+                <form id="loginForm" class="needs-validation" action="resources/include/login.php" method="post"
+                    novalidate>
                     <div class="form-group">
                         <label for="username">Usuario:</label>
                         <input type="text" class="form-control" id="username" name="username" required>
+                        <div class="invalid-feedback">
+                            Por favor ingrese su usuario.
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="password">Contraseña:</label>
                         <input type="password" class="form-control" id="password" name="password" required>
+                        <div class="invalid-feedback">
+                            Por favor ingrese su contraseña.
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block">Iniciar Sesión</button>
+                    <div class="row">
+                        <div class="col-4"></div>
+                        <button type="submit" class="col-4 btn btn-primary btn-block">
+                            Iniciar sesión
+                        </button>
+                        <div class="col-4"></div>
+
+                        <div class="col-4"></div>
+                        <button class="btn col-4 btn-light btn-block">
+                            Iniciar sesión con google
+                            <svg class="bi text-google" width="32" height="32" fill="currentColor">
+                                <use xlink:href="resources/icons/bootstrap-icons.svg#google" />
+                            </svg>
+                        </button>
+                        <div class="col-4"></div>
+
+                        <div class="col-4"></div>
+                        <div class="col-4 registrate">
+                            <a href="">Nuevo usuario? Registrate</a>
+                        </div>
+                        <div class="col-4"></div>
+                    </div>
                 </form>
 
             </div>
         </div>
     </div>
-    
-    <script src="resources/lib/bootstrap.bundle.min.js"></script>
-    
-    </body>
+    <script>
+        (() => {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            const forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
+</body>
+
 </html>

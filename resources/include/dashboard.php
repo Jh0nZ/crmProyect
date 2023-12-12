@@ -18,3 +18,4 @@ if (!isset($_SESSION["username"])) {
     <a href="logout.php">Cerrar Sesión</a>
 </body>
 </html>
+a
