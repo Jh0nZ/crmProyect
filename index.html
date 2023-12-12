@@ -108,8 +108,8 @@
                                 window.location.href = 'leads.html';
                             } else {
                                 username_error.innerHTML = data.message;
-                                username_error.classList.add('is-invalid');
-                                username_error.classList.add('is-invalid');
+                                username.classList.add('is-invalid');
+                                username.classList.add('is-invalid');
                             }
                         })
                         .catch(error => console.error('Error:', error));
