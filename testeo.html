@@ -545,17 +545,26 @@
                 dataType: 'json',
                 success: function (data) {
                     // Actualiza el contenido del botón
-                    $('#embudoButton').html(data[0]+'&#9660;');
+                    for (var funnelName in data) {
+                        if (data.hasOwnProperty(funnelName)) {
+                            // Acceder al nombre del embudo de ventas y mostrarlo en tu interfaz
+                            var embudoButton = document.getElementById('embudoButton');
+                            embudoButton.innerHTML = funnelName + ' &#9660;';
 
-                    // Actualiza el contenido de la lista desplegable
-                    var embudoDropdown = $('#embudoDropdown');
-                    embudoDropdown.empty(); // Borra cualquier contenido existente
+                            // Acceder a las fases del embudo de ventas
+                            var phases = data[funnelName];
 
-                    // Agrega cada fase como un elemento de lista
-                    $.each(data['Embudo de Ventas'], function (index, fase) {
-                        var listItem = $('<li><a class="dropdown-item" href="#">' + fase + '</a></li>');
-                        embudoDropdown.append(listItem);
-                    });
+                            // Puedes acceder a cada fase individualmente y mostrarla en tu interfaz
+                            var embudoDropdown = document.getElementById('embudoDropdown');
+                            embudoDropdown.innerHTML = ''; // Limpiar el contenido existente
+
+                            phases.forEach(function (phase) {
+                                var listItem = document.createElement('li');
+                                listItem.innerHTML = '<a class="dropdown-item" href="#">' + phase + '</a>';
+                                embudoDropdown.appendChild(listItem);
+                            });
+                        }
+                    }
                 },
                 error: function () {
                     console.error('Error al obtener los datos desde op.php');
