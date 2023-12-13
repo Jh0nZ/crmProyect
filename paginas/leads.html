@@ -205,13 +205,13 @@
         fetch('../resources/include/sesion.php', {
             method: 'POST',
         })
-        .then(response => response.json())
-        .then(data => {
-            if (!data.success) {
-                window.location.href = '../index.html';
-            }
-        })
-        .catch(error => console.error('Error:', error));
+            .then(response => response.json())
+            .then(data => {
+                if (!data.success) {
+                    window.location.href = '../index.html';
+                }
+            })
+            .catch(error => console.error('Error:', error));
     </script>
 </head>
 
@@ -274,7 +274,7 @@
                         <button type="button" class="btn btn-primary col-2">Buscar</button>
                     </div>
                     <div class="col-2 d-flex addNewButton">
-                        <button type="button" class="btn btn-primary ">Add New +</button>
+                        <button type="button" class="btn btn-primary " onclick="openPopup()">Add New +</button>
                     </div>
                 </div>
                 <div class="containter-fluid d-flex fasesContenedor" id="insertarFase">
@@ -540,8 +540,19 @@
         });
     </script>
     <script>
-        // Variable global para almacenar la tabla de elementos arrastrables
+        function openPopup() {
+            // Abrir la ventana emergente
+            var popup = window.open('insertar.html', 'Formulario Cliente', 'width=400,height=400');
 
+            // Verificar si la ventana emergente se cerró
+            var interval = setInterval(function () {
+                if (popup.closed) {
+                    // La ventana emergente se cerró, actualizar la página principal
+                    clearInterval(interval);
+                    location.reload(true); // true for force reloading from the server
+                }
+            }, 500);
+        }
     </script>
 </body>
 
