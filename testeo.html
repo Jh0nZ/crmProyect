@@ -468,53 +468,7 @@
     </div>
 
 
-    <script>
-        // Variable global para almacenar la tabla de elementos arrastrables
-        let draggableTable = [];
 
-        // Función para inicializar Draggable.Sortable
-        function initDraggable() {
-            draggableTable = Array.from(document.querySelectorAll('.draggable-item'));
-            const draggableInstance = new Draggable.Sortable(document.querySelectorAll('.contenedorClientes'), {
-                draggable: '.draggable-item',
-                mirror: {
-                    constrainDimensions: true,
-                }
-            });
-        }
-
-        function stopDraggable() {
-            // Eliminamos draggable-item a los clientes
-            draggableTable.forEach(item => item.classList.remove('draggable-item'));
-        }
-
-        function enableDraggable() {
-            // Agregamos draggable-item a los clientes
-            draggableTable.forEach(item => item.classList.add('draggable-item'));
-        }
-
-        function checkScreenSize() {
-            // Verificar el tamaño de la pantalla y orientación
-            if (window.innerWidth > 576) {
-                enableDraggable();
-            } else {
-                stopDraggable();
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', function () {
-            // Iniciamos el draggable
-            initDraggable()
-            // Verificar el tamaño de la pantalla al cargar la página
-            checkScreenSize();
-
-            // Escuchar cambios en el tamaño de la pantalla
-            window.addEventListener('resize', checkScreenSize);
-
-            // Escuchar cambios en la orientación
-            window.addEventListener('orientationchange', checkScreenSize);
-        });
-    </script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -641,7 +595,56 @@
                     console.error('Error al obtener los datos desde op.php');
                 }
             });
+            let draggableTable = [];
+
+        // Función para inicializar Draggable.Sortable
+        function initDraggable() {
+            draggableTable = Array.from(document.querySelectorAll('.draggable-item'));
+            const draggableInstance = new Draggable.Sortable(document.querySelectorAll('.contenedorClientes'), {
+                draggable: '.draggable-item',
+                mirror: {
+                    constrainDimensions: true,
+                }
+            });
+        }
+
+        function stopDraggable() {
+            // Eliminamos draggable-item a los clientes
+            draggableTable.forEach(item => item.classList.remove('draggable-item'));
+        }
+
+        function enableDraggable() {
+            // Agregamos draggable-item a los clientes
+            draggableTable.forEach(item => item.classList.add('draggable-item'));
+        }
+
+        function checkScreenSize() {
+            // Verificar el tamaño de la pantalla y orientación
+            if (window.innerWidth > 576) {
+                enableDraggable();
+            } else {
+                stopDraggable();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Iniciamos el draggable
+            initDraggable()
+            // Verificar el tamaño de la pantalla al cargar la página
+            checkScreenSize();
+
+            // Escuchar cambios en el tamaño de la pantalla
+            window.addEventListener('resize', checkScreenSize);
+
+            // Escuchar cambios en la orientación
+            window.addEventListener('orientationchange', checkScreenSize);
         });
+            
+        });
+    </script>
+    <script>
+        // Variable global para almacenar la tabla de elementos arrastrables
+        
     </script>
 </body>
 
