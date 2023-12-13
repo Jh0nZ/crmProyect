@@ -444,7 +444,7 @@
                     }
                 },
                 error: function () {
-                    console.error('Error al obtener los datos desde op.php');
+                    window.location.href = 'index.html';
                 }
             }).then(response => {
                 let draggableTable = [];
