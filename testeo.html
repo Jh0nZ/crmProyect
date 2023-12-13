@@ -560,7 +560,7 @@
 
                             phases.forEach(function (phase) {
                                 var listItem = document.createElement('li');
-                                listItem.innerHTML = '<a class="dropdown-item" href="#">' + phase + '</a>';
+                                listItem.innerHTML = '<a class="dropdown-item" href="#" data-phase-id="' + phase.phase_id + '">' + phase.phase_name + '</a>';
                                 embudoDropdown.appendChild(listItem);
                             });
                         }
