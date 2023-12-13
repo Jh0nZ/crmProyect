@@ -1,30 +1,104 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario Cliente</title>
+    <!-- Agrega el enlace a Bootstrap (asegúrate de tenerlo localmente) -->
+    <link rel="stylesheet" href="../resources/lib/bootstrap.min.css">
+    <script defer src="../resources/lib/bootstrap.bundle.min.js"></script>
+
 </head>
+
 <body>
 
-<!-- Tu formulario aquí -->
-<form id="clienteForm">
-    <!-- Campos del formulario -->
-    <label for="first_name">Nombre:</label>
-    <input type="text" id="first_name" name="first_name" required>
+    <div class="container mt-5">
+        <h2>Nuevo Cliente</h2>
 
-    <!-- Otros campos del formulario -->
+        <!-- Tu formulario aquí -->
+        <form class="row g-3 needs-validation" action="../resources/crud/newClient.php" method="post" novalidate>
+            <div class="col-md-6">
+                <label for="validationCustom01" class="form-label">Nombre</label>
+                <input type="text" class="form-control" name="first_name" value="" required>
+                <div class="invalid-feedback">
+                    Por favor ingrese un nombre
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="validationCustom02" class="form-label">Apellido</label>
+                <input type="text" class="form-control" name="last_name" value="" required>
+                <div class="invalid-feedback">
+                    Por favor ingrese un Apellido
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="validationCustom02" class="form-label">Fase</label>
+                <input type="text" class="form-control" name="phase_id" value="" required>
+                <div class="invalid-feedback">
+                    Por favor ingrese una fase
+                </div>
+            </div>
+            <div class="col-md-8">
+                <label for="validationCustom03" class="form-label">whatsapp</label>
+                <input type="text" class="form-control" name="whatsapp">
+            </div>
+            <div class="col-md-12">
+                <label for="validationCustom03" class="form-label">extra</label>
+                <input type="text" class="form-control" name="extra">
+            </div>
+            <div class="col-md-12 d-none">
+                <label for="validationCustom03" class="form-label"></label>
+                <input type="date" class="form-control" name="creation_date" id="validationCreationDate" required>
+            </div>
+            <div class="col-12">
+                <button class="btn btn-primary" type="submit">Submit form</button>
+            </div>
+        </form>
+    </div>
 
-    <!-- Botón para cerrar la ventana emergente -->
-    <button type="button" onclick="closePopup()">Cerrar</button>
-</form>
+    <script>
+        function closePopup() {
+            // Cerrar la ventana emergente
+            window.close();
+        }
 
-<script>
-function closePopup() {
-    // Cerrar la ventana emergente
-    window.close();
-}
-</script>
+        function submitForm() {
+            console.log("test");
+        }
+    </script>
+
+    <script>
+        (() => {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            const forms = document.querySelectorAll('.needs-validation')
+
+            // Loop over them and prevent submission
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Obtener la fecha actual en formato YYYY-MM-DD
+            var today = new Date().toISOString().split('T')[0];
+
+            // Establecer el valor del campo de fecha al valor de hoy
+            document.getElementById("validationCreationDate").value = today;
+        });
+    </script>
 
 </body>
+
 </html>
