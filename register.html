@@ -15,7 +15,7 @@
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                window.location.href = 'leads.html';
+                window.location.href = 'paginas/leads.html';
             }
         })
         .catch(error => console.error('Error:', error));
@@ -170,7 +170,7 @@
                     .then(data => {
                         if (data.success) {
                             // Éxito, mostrar mensaje y realizar acciones adicionales si es necesario
-                            window.location.href = 'leads.html';
+                            window.location.href = 'paginas/leads.html';
                         } else {
                             if (data.message) {
                                 usernameInput.classList.add('is-invalid');
