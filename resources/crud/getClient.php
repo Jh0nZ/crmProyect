@@ -20,10 +20,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $clientes = $result->fetch_all(MYSQLI_ASSOC);
         echo json_encode($clientes);
     } else {
-        echo "No se encontraron clientes para el phase_id proporcionado.";
+        echo json_encode(array("error" => "No hay clientes"));
     }
 } else {
-    echo "Acceso no autorizado.";
+    echo json_encode(array("error" => "Acceso no autorizado"));
 }
 
 // Cerrar la conexión
