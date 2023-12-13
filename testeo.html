@@ -517,7 +517,7 @@
                             phases.forEach(function (phase) {
                                 // Agregar la fase al elemento <ul> (lista desplegable)
                                 var listItem = document.createElement('li');
-                                listItem.innerHTML = '<a class="dropdown-item" href="#" data-phase-id="' + phase.phase_id + '">' + phase.phase_name + '</a>';
+                                listItem.innerHTML = '<a class="dropdown-item" href="#">' + phase.phase_name + '</a>';
                                 embudoDropdown.appendChild(listItem);
 
                                 // Agregar la fase al elemento <div class="containter-fluid d-flex fasesContenedor" id="insertarFase">
@@ -526,7 +526,7 @@
                                 faseContenedor.innerHTML = '<div class="card-body d-flex flex-column">' +
                                     '<h5 class="card-title text-center">' + phase.phase_name + '</h5>' +
                                     '<h6 class="card-subtitle mb-2 text-center">0 leads: 0$</h6>' +
-                                    '<div class="contenedorClientes" id="contenedor_phase_' + phase.phase_id + '"></div>' +
+                                    '<div class="contenedorClientes" data-phase-id="' + phase.phase_id + ' id="contenedor_phase_' + phase.phase_id + '"></div>' +
                                     '</div>';
 
                                 fasesContenedor.appendChild(faseContenedor);
@@ -555,9 +555,10 @@
                                             // Crear el elemento de cliente
                                             var clienteElement = document.createElement('div');
                                             clienteElement.className = 'draggable-item cliente row';
-                                            clienteElement.id = cliente.client_id;
+                                            clienteElement.id = "client_" + cliente.client_id;
+                                            clienteElement.setAttribute('data-client-id', cliente.client_id);
 
-                                            // Configurar el contenido del cliente
+                                            // Crear cliente en el html
                                             clienteElement.innerHTML = '<div class="col-2">' +
                                                 '<span class="fa-stack fa-lg">' +
                                                 '<i class="fas fa-circle fa-stack-2x"></i>' +
@@ -597,6 +598,36 @@
             }).then(response => {
                 let draggableTable = [];
 
+                //actualizar phase
+                function updatePhaseIdInDatabase(clientId, phaseId) {
+                    fetch('resources/crud/cambiarPhaseClient.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: new URLSearchParams({
+                            client_id: clientId,
+                            phase_id: phaseId,
+                        }),
+                    })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.text();
+                        })
+                        .then(data => {
+                            // Manejar la respuesta del servidor si es necesario
+                            console.log(data);
+                        })
+                        .catch(error => {
+                            // Manejar errores de red u otros errores
+                            console.error('Error:', error);
+                        });
+                }
+
+
+
                 // Función para inicializar Draggable.Sortable
                 function initDraggable() {
                     draggableTable = Array.from(document.querySelectorAll('.draggable-item'));
@@ -604,8 +635,17 @@
                         draggable: '.draggable-item',
                         mirror: {
                             constrainDimensions: true,
+                        },
+                        onSort: function (evt) {
+                            const draggedItem = evt.data.dragEvent.source;
+                            const newContainer = evt.data.newContainer;
+                            const phaseId = newContainer.getAttribute('data-phase-id'); // Obtener phase_id del atributo data-phase-id
+                            const clientId = draggedItem.getAttribute('data-client-id'); // Obtener client_id del atributo data-client-id
+
+                            // Aquí puedes enviar la información al servidor mediante una solicitud AJAX
+                            updatePhaseIdInDatabase(clientId, phaseId);
                         }
-                    });
+                    })
                 }
 
                 function stopDraggable() {
