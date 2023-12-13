@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>test</title>
-    <link rel="stylesheet" href="../resources/lib/bootstrap.min.css">
-    <script defer src="../resources/lib/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="/resources/lib/bootstrap.min.css">
+
     <style>
         body {
             padding: 0;
@@ -82,19 +82,53 @@
             height: 100%;
             box-sizing: border-box;
         }
+
         .botonBarraLateral {
             text-decoration: none;
-            color:#233142;
+            color: #233142;
         }
+
         .active {
             color: #f95959;
+        }
+
+        .barraSuperior {
+            background-color: aliceblue;
+            height: 5%;
+            padding: 10px;
+            align-content: center;
+        }
+
+        .fasesContenedor {
+            background-color: aqua;
+            height: 95%;
+            padding: 10px;
+            overflow-x: auto;
+            gap: 10px;
+            margin: 0;
+            
+        }
+
+        .buscadorTexto{
+            border-radius: 5px;
+            
+        }
+
+        .addNewButton {
+            justify-content: end;
+        }
+        .faseContenedor {
+            background-color: #ffebbb;
+            min-width: 300px;
+            max-width: 300px;
+            border-radius: 5px;
         }
     </style>
 </head>
 
 <body>
     <div class="containter-fluid containter-fluid d-flex principalPC d-none d-md-block">
-        <div class="row contenedorPC">
+        <div class="row contenedorPC g-0">
             <div class="col-1 d-flex flex-column barraLateral">
                 <a href="bots.html" class="col-2 botonBarraLateral">
                     <svg class="bi" width="32" height="32" fill="currentColor">
@@ -133,15 +167,52 @@
                     <p class="d-none d-xl-block">Logout</p>
                 </a>
             </div>
-            <div class="col-11 contenidoPc">
-                contenido
+            <div class="col-11 d-flex flex-column contenidoPc">
+                <div class="containter-fluid row g-0 d-flex barraSuperior">
+                    <div class="col-2">
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              Dropdown button
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li><a class="dropdown-item" href="#">Action</a></li>
+                              <li><a class="dropdown-item" href="#">Another action</a></li>
+                              <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                          </div>
+                    </div>
+                    <div class="col-8 row buscadorCompleto">
+                        <input type="text" class="col-10 buscadorTexto">
+                        <button type="button" class="btn btn-primary col-2">Buscar</button>
+                    </div>
+                    <div class="col-2 d-flex addNewButton">
+                        <button type="button" class="btn btn-primary ">Add New +</button>
+                    </div>
+                </div>
+                <div class="containter-fluid d-flex fasesContenedor">
+                    <div class="faseContenedor">
+
+                    </div>
+                    <div class="faseContenedor">
+
+                    </div>
+                    <div class="faseContenedor">
+
+                    </div>
+                    <div class="faseContenedor">
+
+                    </div>
+                    <div class="faseContenedor">
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <div class="containter-fluid d-flex flex-column principalMovil d-block d-md-none">
         <!-- contenido principal -->
-        <div class="contenidoMovil">
-            Contenido Leads
+        <div class="d-flex flex-column contenidoMovil">
+
         </div>
 
         <!-- botton-bar -->
@@ -183,6 +254,7 @@
                 <p>Logout</p>
             </a>
         </div>
+        <script src="/resources/lib/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
