@@ -11,6 +11,7 @@
         body {
             padding: 0;
             margin: 0;
+            overflow: hidden;
         }
 
         .principal {
@@ -50,11 +51,36 @@
             color: #f95959;
         }
     </style>
+    <style>
+        .principalPC {
+            height: 100vh;
+        }
+        .contenedorPC {
+            height: 100%;
+        }
+        .barraLateral {
+            background-color: #ffebbb;
+            height: 100%;
+            box-sizing: border-box;
+        }
+        .contenidoPc {
+            background-color: #f95959;
+            height: 100%;
+            box-sizing: border-box;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="containter-fluid principal d-none d-md-block">
-        computadora
+    <div class="containter-fluid containter-fluid d-flex principalPC d-none d-md-block">
+        <div class="row contenedorPC">
+            <div class="col-1 barraLateral">
+                ICONS
+            </div>
+            <div class="col-11 contenidoPc">
+                contenido
+            </div>
+        </div>
     </div>
     <div class="containter-fluid d-flex flex-column principalMovil d-block d-md-none">
         <!-- contenido principal -->

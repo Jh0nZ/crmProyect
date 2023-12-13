@@ -5,12 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>test</title>
-    <link rel="stylesheet" href="resources/lib/bootstrap.min.css">
-    <script defer src="resources/lib/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../resources/lib/bootstrap.min.css">
+    <script defer src="../resources/lib/bootstrap.bundle.min.js"></script>
     <style>
         body {
             padding: 0;
             margin: 0;
+            overflow: hidden;
         }
 
         .principal {
@@ -22,23 +23,68 @@
             background-color: #ffebbb;
             height: 100vh;
         }
+
         .boton-bar {
             height: 10%;
         }
+
         .contenidoMovil {
             height: 90%;
             background-color: azure;
         }
+
         .botonesNavMovil {
+            text-decoration: none;
             text-align: center;
             font-size: 14px;
             font-weight: 600;
             padding: 8px;
             color: #233142;
         }
+
         .botonesNavMovil p {
-            
+
             font-size: 12px;
+        }
+
+        .active {
+            color: #f95959;
+        }
+    </style>
+    <style>
+        .principalPC {
+            height: 100vh;
+        }
+
+        .contenedorPC {
+            height: 100%;
+        }
+
+        .barraLateral {
+            background-color: #ffebbb;
+            height: 100%;
+            box-sizing: border-box;
+            align-items: center;
+            padding: 10px;
+            gap: 20px;
+        }
+
+        .barraLateral a {
+            padding: 10px;
+            font-size: 1em;
+            font-weight: 600;
+            width: 100%;
+            text-align: center;
+        }
+
+        .contenidoPc {
+            background-color: #f95959;
+            height: 100%;
+            box-sizing: border-box;
+        }
+        .botonBarraLateral {
+            text-decoration: none;
+            color:#233142;
         }
         .active {
             color: #f95959;
@@ -47,47 +93,96 @@
 </head>
 
 <body>
-    <div class="containter-fluid principal d-none d-md-block">
-        computadora
+    <div class="containter-fluid containter-fluid d-flex principalPC d-none d-md-block">
+        <div class="row contenedorPC">
+            <div class="col-1 d-flex flex-column barraLateral">
+                <a href="bots.html" class="col-2 botonBarraLateral">
+                    <svg class="bi" width="32" height="32" fill="currentColor">
+                        <use xlink:href="../resources/icons/bootstrap-icons.svg#robot" />
+                    </svg>
+                    <p class="d-none d-xl-block">Bots</p>
+                </a>
+                <a href="productos.html" class="col-2 botonBarraLateral">
+                    <svg class="bi" width="32" height="32" fill="currentColor">
+                        <use xlink:href="../resources/icons/bootstrap-icons.svg#bag-fill" />
+                    </svg>
+                    <p class="d-none d-xl-block">Productos</p>
+                </a>
+                <a href="chats.html" class="col-2 botonBarraLateral">
+                    <svg class="bi" width="32" height="32" fill="currentColor">
+                        <use xlink:href="../resources/icons/bootstrap-icons.svg#chat-dots" />
+                    </svg>
+                    <p class="d-none d-xl-block">Chats</p>
+                </a>
+                <a href="leads.html" class="col-2 botonBarraLateral active">
+                    <svg class="bi" width="32" height="32" fill="currentColor">
+                        <use xlink:href="../resources/icons/bootstrap-icons.svg#people" />
+                    </svg>
+                    <p class="d-none d-xl-block">Leads</p>
+                </a>
+                <a href="campaings.html" class="col-2 botonBarraLateral">
+                    <svg class="bi" width="32" height="32" fill="currentColor">
+                        <use xlink:href="../resources/icons/bootstrap-icons.svg#megaphone-fill" />
+                    </svg>
+                    <p class="d-none d-xl-block">Campañas</p>
+                </a>
+                <a href="../resources/include/logout.php" class="col-2 botonBarraLateral">
+                    <svg class="bi" width="32" height="32" fill="currentColor">
+                        <use xlink:href="../resources/icons/bootstrap-icons.svg#box-arrow-left" />
+                    </svg>
+                    <p class="d-none d-xl-block">Logout</p>
+                </a>
+            </div>
+            <div class="col-11 contenidoPc">
+                contenido
+            </div>
+        </div>
     </div>
     <div class="containter-fluid d-flex flex-column principalMovil d-block d-md-none">
         <!-- contenido principal -->
         <div class="contenidoMovil">
+            Contenido Leads
         </div>
 
         <!-- botton-bar -->
         <div class="boton-bar d-flex">
-            <div class="col-2 botonesNavMovil">
+            <a href="bots.html" class="col-2 botonesNavMovil">
                 <svg class="bi" width="32" height="32" fill="currentColor">
-                    <use xlink:href="resources/icons/bootstrap-icons.svg#robot" />
+                    <use xlink:href="../resources/icons/bootstrap-icons.svg#robot" />
                 </svg>
                 <p>Bots</p>
-            </div>
-            <div class="col-2 botonesNavMovil">
+            </a>
+            <a href="productos.html" class="col-2 botonesNavMovil">
                 <svg class="bi" width="32" height="32" fill="currentColor">
-                    <use xlink:href="resources/icons/bootstrap-icons.svg#bag-fill" />
+                    <use xlink:href="../resources/icons/bootstrap-icons.svg#bag-fill" />
                 </svg>
                 <p>Productos</p>
-            </div>
-            <div class="col-4 botonesNavMovil active">
+            </a>
+            <a href="chats.html" class="col-2 botonesNavMovil">
                 <svg class="bi" width="32" height="32" fill="currentColor">
-                    <use xlink:href="resources/icons/bootstrap-icons.svg#people" />
+                    <use xlink:href="../resources/icons/bootstrap-icons.svg#chat-dots" />
+                </svg>
+                <p>Chats</p>
+            </a>
+            <a href="leads.html" class="col-2 botonesNavMovil active">
+                <svg class="bi" width="32" height="32" fill="currentColor">
+                    <use xlink:href="../resources/icons/bootstrap-icons.svg#people" />
                 </svg>
                 <p>Leads</p>
-            </div>
-            <div class="col-2 botonesNavMovil">
+            </a>
+            <a href="campaings.html" class="col-2 botonesNavMovil">
                 <svg class="bi" width="32" height="32" fill="currentColor">
-                    <use xlink:href="resources/icons/bootstrap-icons.svg#megaphone-fill" />
+                    <use xlink:href="../resources/icons/bootstrap-icons.svg#megaphone-fill" />
                 </svg>
                 <p>Campañas</p>
-            </div>
-            <div class="col-2 botonesNavMovil">
+            </a>
+            <a href="../resources/include/logout.php" class="col-2 botonesNavMovil">
                 <svg class="bi" width="32" height="32" fill="currentColor">
-                    <use xlink:href="resources/icons/bootstrap-icons.svg#box-arrow-left" />
+                    <use xlink:href="../resources/icons/bootstrap-icons.svg#box-arrow-left" />
                 </svg>
                 <p>Logout</p>
-            </div>
-    </div>
+            </a>
+        </div>
 </body>
 
 </html>
