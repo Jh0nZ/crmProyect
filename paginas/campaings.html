@@ -6,11 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>test</title>
     <link rel="stylesheet" href="../resources/lib/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/draggable/1.0.0/draggable.bundle.legacy.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script defer src="../resources/lib/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         body {
             padding: 0;
             margin: 0;
+            overflow: hidden;
         }
 
         .principal {
@@ -28,6 +32,7 @@
         }
 
         .contenidoMovil {
+            color: black;
             height: 90%;
             background-color: azure;
         }
@@ -50,16 +55,238 @@
             color: #f95959;
         }
     </style>
+    <style>
+        .principalPC {
+            height: 100vh;
+        }
+
+        .contenedorPC {
+            height: 100%;
+        }
+
+        .barraLateral {
+            background-color: #ffebbb;
+            height: 100%;
+            box-sizing: border-box;
+            align-items: center;
+            padding: 10px;
+            gap: 20px;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+
+        .barraLateral::-webkit-scrollbar {
+            display: none;
+        }
+
+        .barraLateral a {
+            padding: 10px;
+            font-size: 1em;
+            font-weight: 600;
+            width: 100%;
+            text-align: center;
+
+        }
+
+        .contenidoPc {
+            background-color: #f95959;
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        .botonBarraLateral {
+            text-decoration: none;
+            color: #233142;
+        }
+
+        .active {
+            color: #f95959;
+        }
+
+        .barraSuperior {
+            background-color: aliceblue;
+            height: 10vh;
+            padding: 10px;
+            align-content: center;
+
+        }
+
+        .fasesContenedor {
+            background-color: #455d7a;
+            height: 90vh;
+            padding: 20px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            gap: 20px;
+            margin: 0;
+
+        }
+
+        @media (min-height: 750px) {
+            .barraSuperior {
+                height: 5vh;
+            }
+
+            .fasesContenedor {
+                height: 95vh;
+            }
+        }
+
+        .buscadorTexto {
+            border-radius: 5px;
+
+        }
+
+        .addNewButton {
+            justify-content: end;
+        }
+
+        .faseContenedor {
+            background-color: #233142;
+            min-width: 300px;
+            max-width: 300px;
+            border-radius: 5px;
+            color: white;
+        }
+
+        .card-subtitle {
+            color: #ccc;
+            font-weight: 100;
+        }
+
+        .cliente {
+            background-color: #e7eaf6;
+            color: black;
+            padding-top: 10px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+
+        .contenedorClientes {
+            overflow-y: scroll;
+            overflow-x: hidden;
+            width: 100%;
+            flex: 1;
+            padding: 10px;
+        }
+
+        .contenedorClientes::-webkit-scrollbar {
+            display: none;
+        }
+
+        .card-body {
+            height: 90vh;
+            padding: 10px;
+            overflow: hidden;
+
+        }
+
+        .card-body::-webkit-scrollbar {
+            display: none;
+        }
+
+        .draggable-mirror {
+            opacity: 0.3;
+            z-index: 999;
+        }
+
+        .draggable-source--is-dragging {
+            opacity: 0.7;
+            border: 2px dotted black;
+            background-color: #00ff00fa;
+        }
+
+        .dropdownMio {
+            overflow: hidden;
+        }
+    </style>
+    <script>
+        // verificamos si no se cerro sesion
+        fetch('../resources/include/sesion.php', {
+            method: 'POST',
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (!data.success) {
+                window.location.href = '../index.html';
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    </script>
 </head>
 
 <body>
-    <div class="containter-fluid principal d-none d-md-block">
-        computadora
+    <div class="containter-fluid containter-fluid d-flex principalPC d-none d-md-block" id="pc">
+        <div class="row contenedorPC g-0">
+            <div class="col-1 d-flex flex-column barraLateral">
+                <a href="bots.html" class="col-2 botonBarraLateral">
+                    <svg class="bi" width="32" height="32" fill="currentColor">
+                        <use xlink:href="../resources/icons/bootstrap-icons.svg#robot" />
+                    </svg>
+                    <p class="d-none d-xl-block">Bots</p>
+                </a>
+                <a href="productos.html" class="col-2 botonBarraLateral">
+                    <svg class="bi" width="32" height="32" fill="currentColor">
+                        <use xlink:href="../resources/icons/bootstrap-icons.svg#bag-fill" />
+                    </svg>
+                    <p class="d-none d-xl-block">Productos</p>
+                </a>
+                <a href="chats.html" class="col-2 botonBarraLateral">
+                    <svg class="bi" width="32" height="32" fill="currentColor">
+                        <use xlink:href="../resources/icons/bootstrap-icons.svg#chat-dots" />
+                    </svg>
+                    <p class="d-none d-xl-block">Chats</p>
+                </a>
+                <a href="leads.html" class="col-2 botonBarraLateral active">
+                    <svg class="bi" width="32" height="32" fill="currentColor">
+                        <use xlink:href="../resources/icons/bootstrap-icons.svg#people" />
+                    </svg>
+                    <p class="d-none d-xl-block">Leads</p>
+                </a>
+                <a href="campaings.html" class="col-2 botonBarraLateral">
+                    <svg class="bi" width="32" height="32" fill="currentColor">
+                        <use xlink:href="../resources/icons/bootstrap-icons.svg#megaphone-fill" />
+                    </svg>
+                    <p class="d-none d-xl-block">Campañas</p>
+                </a>
+                <a href="../resources/include/logout.php" class="col-2 botonBarraLateral">
+                    <svg class="bi" width="32" height="32" fill="currentColor">
+                        <use xlink:href="../resources/icons/bootstrap-icons.svg#box-arrow-left" />
+                    </svg>
+                    <p class="d-none d-xl-block">Logout</p>
+                </a>
+            </div>
+            <div class="col-11 d-flex flex-column contenidoPc">
+                <div class="containter-fluid row g-0 d-flex barraSuperior">
+                    <div class="dropdownMio d-flex col-2">
+                        <button class="col-9 btn btn-primary " type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false" id="embudoButton">
+                            Embudo &#9660;
+                        </button>
+                        <ul class="dropdown-menu" id="embudoDropdown">
+                            <li><a class="dropdown-item" href="#">Embudo 1</a></li>
+                            <li><a class="dropdown-item" href="#">Embudo2</a></li>
+                            <li><a class="dropdown-item" href="#">Embudo3</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-8 row buscadorCompleto">
+                        <input type="text" class="col-10 buscadorTexto">
+                        <button type="button" class="btn btn-primary col-2">Buscar</button>
+                    </div>
+                    <div class="col-2 d-flex addNewButton">
+                        <button type="button" class="btn btn-primary ">Add New +</button>
+                    </div>
+                </div>
+                <div class="containter-fluid d-flex fasesContenedor" id="insertarFase">
+                </div>
+            </div>
+        </div>
+
     </div>
-    <div class="containter-fluid d-flex flex-column principalMovil d-block d-md-none">
+    <div class="containter-fluid d-flex flex-column principalMovil d-block d-md-none" id="movil">
         <!-- contenido principal -->
-        <div class="contenidoMovil">
-            Contenido Campañas
+        <div class="d-flex flex-column contenidoMovil">
+            Contenido movil
         </div>
 
         <!-- botton-bar -->
@@ -82,13 +309,13 @@
                 </svg>
                 <p>Chats</p>
             </a>
-            <a href="leads.html" class="col-2 botonesNavMovil">
+            <a href="leads.html" class="col-2 botonesNavMovil active">
                 <svg class="bi" width="32" height="32" fill="currentColor">
                     <use xlink:href="../resources/icons/bootstrap-icons.svg#people" />
                 </svg>
                 <p>Leads</p>
             </a>
-            <a href="campaings.html" class="col-2 botonesNavMovil active">
+            <a href="campaings.html" class="col-2 botonesNavMovil">
                 <svg class="bi" width="32" height="32" fill="currentColor">
                     <use xlink:href="../resources/icons/bootstrap-icons.svg#megaphone-fill" />
                 </svg>
@@ -101,6 +328,221 @@
                 <p>Logout</p>
             </a>
         </div>
+    </div>
+
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var element = document.getElementById("pc");
+
+            // Función para activar el modo de pantalla completa
+            function openFullscreen() {
+                if (element.requestFullscreen) {
+                    element.requestFullscreen();
+                } else if (element.mozRequestFullScreen) {
+                    element.mozRequestFullScreen();
+                } else if (element.webkitRequestFullscreen) {
+                    element.webkitRequestFullscreen();
+                } else if (element.msRequestFullscreen) {
+                    element.msRequestFullscreen();
+                }
+            }
+
+            // Llama a la función para activar el modo de pantalla completa
+            openFullscreen();
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: '../resources/include/obtenerFases.php',
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    var fasesContenedor = document.getElementById('insertarFase');
+                    fasesContenedor.innerHTML = '';
+                    // Actualiza el contenido del botón
+                    for (var funnelName in data) {
+                        if (data.hasOwnProperty(funnelName)) {
+                            // Acceder al nombre del embudo de ventas y mostrarlo en tu interfaz
+                            var embudoButton = document.getElementById('embudoButton');
+                            embudoButton.innerHTML = funnelName + ' &#9660;';
+
+                            // Acceder a las fases del embudo de ventas
+                            var phases = data[funnelName];
+
+                            // Puedes acceder a cada fase individualmente y mostrarla en tu interfaz
+                            var embudoDropdown = document.getElementById('embudoDropdown');
+                            embudoDropdown.innerHTML = ''; // Limpiar el contenido existente
+
+                            phases.forEach(function (phase) {
+                                // Agregar la fase al elemento <ul> (lista desplegable)
+                                var listItem = document.createElement('li');
+                                listItem.innerHTML = '<a class="dropdown-item" href="#">' + phase.phase_name + '</a>';
+                                embudoDropdown.appendChild(listItem);
+
+                                // Agregar la fase al elemento <div class="containter-fluid d-flex fasesContenedor" id="insertarFase">
+                                var faseContenedor = document.createElement('div');
+                                faseContenedor.className = 'card faseContenedor';
+                                faseContenedor.innerHTML = '<div class="card-body d-flex flex-column">' +
+                                    '<h5 class="card-title text-center">' + phase.phase_name + '</h5>' +
+                                    '<h6 class="card-subtitle mb-2 text-center">0 leads: 0$</h6>' +
+                                    '<div class="contenedorClientes" data-phase-id="' + phase.phase_id + '" id="contenedor_phase_' + phase.phase_id + '"></div>' +
+                                    '</div>';
+
+                                fasesContenedor.appendChild(faseContenedor);
+                            });
+
+                            phases.forEach(function (phase) {
+                                // Obtener el contenedor de clientes por phase_id
+                                var contenedorClientes = document.getElementById('contenedor_phase_' + phase.phase_id);
+
+
+                                // Limpiar el contenido existente
+                                contenedorClientes.innerHTML = '';
+
+                                // Realizar la solicitud fetch para obtener los clientes
+                                fetch('../resources/crud/getClient.php', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/x-www-form-urlencoded',
+                                    },
+                                    body: 'phase_id=' + phase.phase_id,
+                                })
+                                    .then(response => response.json())
+                                    .then(clientData => {
+                                        // Agregar clientes al contenedor
+                                        clientData.forEach(function (cliente) {
+                                            // Crear el elemento de cliente
+                                            var clienteElement = document.createElement('div');
+                                            clienteElement.className = 'draggable-item cliente row';
+                                            clienteElement.id = "client_" + cliente.client_id;
+                                            clienteElement.setAttribute('data-client-id', cliente.client_id);
+
+                                            // Crear cliente en el html
+                                            clienteElement.innerHTML = '<div class="col-2">' +
+                                                '<span class="fa-stack fa-lg">' +
+                                                '<i class="fas fa-circle fa-stack-2x"></i>' +
+                                                '<i class="fas fa-user fa-stack-1x fa-inverse"></i>' +
+                                                '</span>' +
+                                                '</div>' +
+                                                '<div class="row col-10">' +
+                                                '<div class="col-8">' +
+                                                '<p>' + cliente.first_name + '</p>' +
+                                                '</div>' +
+                                                '<div class="col-4">' +
+                                                '<p>' + cliente.creation_date + '</p>' +
+                                                '</div>' +
+                                                '<div class="col-8">' +
+                                                '<p>$0</p>' +
+                                                '</div>' +
+                                                '<div class="col-4">' +
+                                                '<p>tarea</p>' +
+                                                '</div>' +
+                                                '</div>';
+
+                                            // Agregar el elemento de cliente al contenedor
+                                            contenedorClientes.appendChild(clienteElement);
+                                        });
+                                    })
+                                    .catch(error => {
+                                        console.error('Error al obtener los clientes para la fase con phase_id:', phase.phase_id);
+                                    });
+                            });
+
+                        }
+                    }
+                },
+                error: function () {
+                    window.location.href = 'index.html';
+                }
+            }).then(response => {
+                let draggableTable = [];
+
+                //actualizar phase
+                function updatePhaseIdInDatabase(clientId, phaseId) {
+                    fetch('../resources/crud/cambiarPhaseClient.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: new URLSearchParams({
+                            client_id: clientId,
+                            phase_id: phaseId,
+                        }),
+                    })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.text();
+                        })
+                        .then(data => {
+                            // Manejar la respuesta del servidor si es necesario
+                            console.log(data);
+                        })
+                        .catch(error => {
+                            // Manejar errores de red u otros errores
+                            console.error('Error:', error);
+                        });
+                }
+
+
+                // Función para inicializar Draggable.Sortable
+                function initDraggable() {
+                    draggableTable = Array.from(document.querySelectorAll('.draggable-item'));
+                    const draggableInstance = new Draggable.Sortable(document.querySelectorAll('.contenedorClientes'), {
+                        draggable: '.draggable-item',
+                        mirror: {
+                            constrainDimensions: true,
+                        }
+                    })
+                    draggableInstance.on('sortable:stop', function (event) {
+                        const clientId = event.data.dragEvent.source.getAttribute('data-client-id');
+                        const phaseId = event.data.dragEvent.source.parentNode.getAttribute('data-phase-id');
+                        // Aquí puedes ejecutar la función que deseas cuando un elemento cambia de contenedor
+                        updatePhaseIdInDatabase(clientId, phaseId);
+                    });
+                }
+
+
+                function stopDraggable() {
+                    // Eliminamos draggable-item a los clientes
+                    draggableTable.forEach(item => item.classList.remove('draggable-item'));
+                }
+
+                function enableDraggable() {
+                    // Agregamos draggable-item a los clientes
+                    draggableTable.forEach(item => item.classList.add('draggable-item'));
+                }
+
+                function checkScreenSize() {
+                    // Verificar el tamaño de la pantalla y orientación
+                    if (window.innerWidth > 576) {
+                        enableDraggable();
+                    } else {
+                        stopDraggable();
+                    }
+                }
+                // Iniciamos el draggable
+                initDraggable()
+                // Verificar el tamaño de la pantalla al cargar la página
+                checkScreenSize();
+
+                // Escuchar cambios en el tamaño de la pantalla
+                window.addEventListener('resize', checkScreenSize);
+
+                // Escuchar cambios en la orientación
+                window.addEventListener('orientationchange', checkScreenSize);
+            })
+        });
+    </script>
+    <script>
+        // Variable global para almacenar la tabla de elementos arrastrables
+
+    </script>
 </body>
 
 </html>
