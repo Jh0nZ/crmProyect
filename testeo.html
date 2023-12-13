@@ -639,14 +639,12 @@
                             constrainDimensions: true,
                         }
                     })
-                    draggableInstance.on('drag:end', (event, draggable) => {
-                        const container = event.target.closest('.contenedorClientes');
-                        if (container) {
-                        // Ejecuta tu función con el draggable y el contenedor como argumentos
-                        updatePhaseIdInDatabase(draggable.getAttribute('data-client-id'), container.getAttribute('data-phase-id'));
-                        }
+                    draggableInstance.on('sortable:stop', function (event) {
+                        // Aquí puedes ejecutar la función que deseas cuando un elemento cambia de contenedor
+                        console.log('Elemento cambiado de contenedor:', event);
                     });
                 }
+
 
                 function stopDraggable() {
                     // Eliminamos draggable-item a los clientes
