@@ -25,6 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($password, $storedPassword)) {
             // Inicio de sesión exitoso
             $_SESSION["username"] = $username;
+            $_SESSION["user_id"] = $row["user_id"];
             $response["success"] = true;
             $response["message"] = "Inicio de sesión exitoso";
         } else {
