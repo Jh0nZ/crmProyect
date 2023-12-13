@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>test</title>
-    <link rel="stylesheet" href="/resources/lib/bootstrap.min.css">
+    <link rel="stylesheet" href="../resources/lib/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/draggable/1.0.0/draggable.bundle.legacy.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script defer src="/resources/lib/bootstrap.bundle.min.js"></script>
+    <script defer src="../resources/lib/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         body {
@@ -202,7 +202,7 @@
     </style>
     <script>
         // verificamos si no se cerro sesion
-        fetch('resources/include/sesion.php', {
+        fetch('../resources/include/sesion.php', {
             method: 'POST',
         })
         .then(response => response.json())
@@ -357,7 +357,7 @@
     <script>
         $(document).ready(function () {
             $.ajax({
-                url: 'resources/include/obtenerFases.php',
+                url: '../resources/include/obtenerFases.php',
                 type: 'GET',
                 dataType: 'json',
                 success: function (data) {
@@ -404,7 +404,7 @@
                                 contenedorClientes.innerHTML = '';
 
                                 // Realizar la solicitud fetch para obtener los clientes
-                                fetch('resources/crud/getClient.php', {
+                                fetch('../resources/crud/getClient.php', {
                                     method: 'POST',
                                     headers: {
                                         'Content-Type': 'application/x-www-form-urlencoded',
@@ -463,7 +463,7 @@
 
                 //actualizar phase
                 function updatePhaseIdInDatabase(clientId, phaseId) {
-                    fetch('resources/crud/cambiarPhaseClient.php', {
+                    fetch('../resources/crud/cambiarPhaseClient.php', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded',
