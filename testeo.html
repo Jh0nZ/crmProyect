@@ -544,6 +544,8 @@
                 type: 'GET',
                 dataType: 'json',
                 success: function (data) {
+                    var fasesContenedor = document.getElementById('insertarFase');
+                    fasesContenedor.innerHTML = '';
                     // Actualiza el contenido del botón
                     for (var funnelName in data) {
                         if (data.hasOwnProperty(funnelName)) {
@@ -559,9 +561,21 @@
                             embudoDropdown.innerHTML = ''; // Limpiar el contenido existente
 
                             phases.forEach(function (phase) {
+                                // Agregar la fase al elemento <ul> (lista desplegable)
                                 var listItem = document.createElement('li');
                                 listItem.innerHTML = '<a class="dropdown-item" href="#" data-phase-id="' + phase.phase_id + '">' + phase.phase_name + '</a>';
                                 embudoDropdown.appendChild(listItem);
+
+                                // Agregar la fase al elemento <div class="containter-fluid d-flex fasesContenedor" id="insertarFase">
+                                var faseContenedor = document.createElement('div');
+                                faseContenedor.className = 'card faseContenedor';
+                                faseContenedor.innerHTML = '<div class="card-body d-flex flex-column">' +
+                                    '<h5 class="card-title text-center">' + phase.phase_name + '</h5>' +
+                                    '<h6 class="card-subtitle mb-2 text-center">0 leads: 0$</h6>' +
+                                    '<div class="contenedorClientes" id="' + phase.phase_id + '"></div>' +
+                                    '</div>';
+
+                                fasesContenedor.appendChild(faseContenedor);
                             });
                         }
                     }
