@@ -19,30 +19,13 @@ if (isset($_SESSION["user_id"]) && isset($_SESSION["store_id"]) && isset($_SESSI
     $result = $conn->query($getFunnelSql);
 
     if ($result->num_rows > 0) {
-        $funnelData = array();
-        $currentFunnelId = null;
-
+        $data = array();
         while ($row = $result->fetch_assoc()) {
-            $funnelId = $row["id"];
-
-            if ($funnelId !== $currentFunnelId) {
-                $currentFunnelId = $funnelId;
-                $funnelData[] = array(
-                    "funnel_id" => $row["id"],
-                    "funnel_name" => $row["name"],
-                    "funnel_description" => $row["description"],
-                    "phases" => array()
-                );
-            }
-
-            $funnelData[count($funnelData) - 1]["phases"][] = array(
-                "phase_name" => $row["phase_name"],
-                "phase_description" => $row["phase_description"]
-            );
+            $data[] = $row;
         }
 
         header('Content-Type: application/json');
-        echo json_encode($funnelData);
+        echo json_encode($data);
     } else {
         header('Content-Type: application/json');
         echo json_encode(array("error" => "No se encontró un embudo para el usuario."));
