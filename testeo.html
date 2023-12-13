@@ -594,50 +594,52 @@
                 error: function () {
                     console.error('Error al obtener los datos desde op.php');
                 }
-            });
+            }).then(response => {
+                let draggableTable = [];
 
-            let draggableTable = [];
-
-            // Función para inicializar Draggable.Sortable
-            function initDraggable() {
-                draggableTable = Array.from(document.querySelectorAll('.draggable-item'));
-                const draggableInstance = new Draggable.Sortable(document.querySelectorAll('.contenedorClientes'), {
-                    draggable: '.draggable-item',
-                    mirror: {
-                        constrainDimensions: true,
-                    }
-                });
-            }
-
-            function stopDraggable() {
-                // Eliminamos draggable-item a los clientes
-                draggableTable.forEach(item => item.classList.remove('draggable-item'));
-            }
-
-            function enableDraggable() {
-                // Agregamos draggable-item a los clientes
-                draggableTable.forEach(item => item.classList.add('draggable-item'));
-            }
-
-            function checkScreenSize() {
-                // Verificar el tamaño de la pantalla y orientación
-                if (window.innerWidth > 576) {
-                    enableDraggable();
-                } else {
-                    stopDraggable();
+                // Función para inicializar Draggable.Sortable
+                function initDraggable() {
+                    draggableTable = Array.from(document.querySelectorAll('.draggable-item'));
+                    const draggableInstance = new Draggable.Sortable(document.querySelectorAll('.contenedorClientes'), {
+                        draggable: '.draggable-item',
+                        mirror: {
+                            constrainDimensions: true,
+                        }
+                    });
                 }
-            }
-            // Iniciamos el draggable
-            initDraggable()
-            // Verificar el tamaño de la pantalla al cargar la página
-            checkScreenSize();
 
-            // Escuchar cambios en el tamaño de la pantalla
-            window.addEventListener('resize', checkScreenSize);
+                function stopDraggable() {
+                    // Eliminamos draggable-item a los clientes
+                    draggableTable.forEach(item => item.classList.remove('draggable-item'));
+                }
 
-            // Escuchar cambios en la orientación
-            window.addEventListener('orientationchange', checkScreenSize);
-            
+                function enableDraggable() {
+                    // Agregamos draggable-item a los clientes
+                    draggableTable.forEach(item => item.classList.add('draggable-item'));
+                }
+
+                function checkScreenSize() {
+                    // Verificar el tamaño de la pantalla y orientación
+                    if (window.innerWidth > 576) {
+                        enableDraggable();
+                    } else {
+                        stopDraggable();
+                    }
+                }
+                // Iniciamos el draggable
+                initDraggable()
+                // Verificar el tamaño de la pantalla al cargar la página
+                checkScreenSize();
+
+                // Escuchar cambios en el tamaño de la pantalla
+                window.addEventListener('resize', checkScreenSize);
+
+                // Escuchar cambios en la orientación
+                window.addEventListener('orientationchange', checkScreenSize);
+            })
+
+
+
 
         });
     </script>
