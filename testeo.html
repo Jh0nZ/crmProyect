@@ -545,7 +545,7 @@
                 dataType: 'json',
                 success: function (data) {
                     // Actualiza el contenido del botón
-                    $('#embudoButton').html(data['Embudo de Ventas'][0]+'&#9660;');
+                    $('#embudoButton').html(data[0]+'&#9660;');
 
                     // Actualiza el contenido de la lista desplegable
                     var embudoDropdown = $('#embudoDropdown');
