@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>test</title>
     <link rel="stylesheet" href="/resources/lib/bootstrap.min.css">
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/draggable/1.0.0/draggable.bundle.legacy.min.js"></script>
+    <script defer src="/resources/lib/bootstrap.bundle.min.js"></script>
     <style>
         body {
             padding: 0;
@@ -29,6 +30,7 @@
         }
 
         .contenidoMovil {
+            color: black;
             height: 90%;
             background-color: azure;
         }
@@ -124,6 +126,7 @@
             max-width: 300px;
             border-radius: 5px;
         }
+
         .cliente {
             background-color: chartreuse;
             color: black;
@@ -131,6 +134,7 @@
             margin: 5px;
             border-radius: 5px;
         }
+
         .card-body {
             height: 90vh;
         }
@@ -139,13 +143,14 @@
             opacity: 0.3;
             z-index: 999;
         }
+
         .draggable-source--is-dragging {
             opacity: 0.7;
             border: 2px dotted black;
             background-color: red;
         }
     </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/draggable/1.0.0/draggable.bundle.legacy.min.js"></script>
+
 </head>
 
 <body>
@@ -236,99 +241,103 @@
                 </div>
             </div>
         </div>
-        <div class="containter-fluid d-flex flex-column principalMovil d-block d-md-none">
-            <!-- contenido principal -->
-            <div class="d-flex flex-column contenidoMovil">
+        
+    </div>
+    <div class="containter-fluid d-flex flex-column principalMovil d-block d-md-none">
+        <!-- contenido principal -->
+        <div class="d-flex flex-column contenidoMovil">
+            Contenido movil
+        </div>
 
-            </div>
+        <!-- botton-bar -->
+        <div class="boton-bar d-flex">
+            <a href="bots.html" class="col-2 botonesNavMovil">
+                <svg class="bi" width="32" height="32" fill="currentColor">
+                    <use xlink:href="../resources/icons/bootstrap-icons.svg#robot" />
+                </svg>
+                <p>Bots</p>
+            </a>
+            <a href="productos.html" class="col-2 botonesNavMovil">
+                <svg class="bi" width="32" height="32" fill="currentColor">
+                    <use xlink:href="../resources/icons/bootstrap-icons.svg#bag-fill" />
+                </svg>
+                <p>Productos</p>
+            </a>
+            <a href="chats.html" class="col-2 botonesNavMovil">
+                <svg class="bi" width="32" height="32" fill="currentColor">
+                    <use xlink:href="../resources/icons/bootstrap-icons.svg#chat-dots" />
+                </svg>
+                <p>Chats</p>
+            </a>
+            <a href="leads.html" class="col-2 botonesNavMovil active">
+                <svg class="bi" width="32" height="32" fill="currentColor">
+                    <use xlink:href="../resources/icons/bootstrap-icons.svg#people" />
+                </svg>
+                <p>Leads</p>
+            </a>
+            <a href="campaings.html" class="col-2 botonesNavMovil">
+                <svg class="bi" width="32" height="32" fill="currentColor">
+                    <use xlink:href="../resources/icons/bootstrap-icons.svg#megaphone-fill" />
+                </svg>
+                <p>Campañas</p>
+            </a>
+            <a href="../resources/include/logout.php" class="col-2 botonesNavMovil">
+                <svg class="bi" width="32" height="32" fill="currentColor">
+                    <use xlink:href="../resources/icons/bootstrap-icons.svg#box-arrow-left" />
+                </svg>
+                <p>Logout</p>
+            </a>
+        </div>
+    </div>
 
-            <!-- botton-bar -->
-            <div class="boton-bar d-flex">
-                <a href="bots.html" class="col-2 botonesNavMovil">
-                    <svg class="bi" width="32" height="32" fill="currentColor">
-                        <use xlink:href="../resources/icons/bootstrap-icons.svg#robot" />
-                    </svg>
-                    <p>Bots</p>
-                </a>
-                <a href="productos.html" class="col-2 botonesNavMovil">
-                    <svg class="bi" width="32" height="32" fill="currentColor">
-                        <use xlink:href="../resources/icons/bootstrap-icons.svg#bag-fill" />
-                    </svg>
-                    <p>Productos</p>
-                </a>
-                <a href="chats.html" class="col-2 botonesNavMovil">
-                    <svg class="bi" width="32" height="32" fill="currentColor">
-                        <use xlink:href="../resources/icons/bootstrap-icons.svg#chat-dots" />
-                    </svg>
-                    <p>Chats</p>
-                </a>
-                <a href="leads.html" class="col-2 botonesNavMovil active">
-                    <svg class="bi" width="32" height="32" fill="currentColor">
-                        <use xlink:href="../resources/icons/bootstrap-icons.svg#people" />
-                    </svg>
-                    <p>Leads</p>
-                </a>
-                <a href="campaings.html" class="col-2 botonesNavMovil">
-                    <svg class="bi" width="32" height="32" fill="currentColor">
-                        <use xlink:href="../resources/icons/bootstrap-icons.svg#megaphone-fill" />
-                    </svg>
-                    <p>Campañas</p>
-                </a>
-                <a href="../resources/include/logout.php" class="col-2 botonesNavMovil">
-                    <svg class="bi" width="32" height="32" fill="currentColor">
-                        <use xlink:href="../resources/icons/bootstrap-icons.svg#box-arrow-left" />
-                    </svg>
-                    <p>Logout</p>
-                </a>
-            </div>
-            <script src="/resources/lib/bootstrap.bundle.min.js"></script>
-            <script>
-                // Variable global para almacenar la tabla de elementos arrastrables
-                let draggableTable = [];
-        
-                // Función para inicializar Draggable.Sortable
-                function initDraggable() {
-                    draggableTable = Array.from(document.querySelectorAll('.draggable-item'));
-                    const draggableInstance = new Draggable.Sortable(document.querySelectorAll('.card-body'), {
-                        draggable: '.draggable-item',
-                        mirror: {
-                            constrainDimensions: true,
-                        }
-                    });
+    
+    <script>
+        // Variable global para almacenar la tabla de elementos arrastrables
+        let draggableTable = [];
+
+        // Función para inicializar Draggable.Sortable
+        function initDraggable() {
+            draggableTable = Array.from(document.querySelectorAll('.draggable-item'));
+            const draggableInstance = new Draggable.Sortable(document.querySelectorAll('.card-body'), {
+                draggable: '.draggable-item',
+                mirror: {
+                    constrainDimensions: true,
                 }
-        
-                function stopDraggable() {
-                    // Eliminamos draggable-item a los clientes
-                    draggableTable.forEach(item => item.classList.remove('draggable-item'));
-                }
-        
-                function enableDraggable() {
-                    // Agregamos draggable-item a los clientes
-                    draggableTable.forEach(item => item.classList.add('draggable-item'));
-                }
-        
-                function checkScreenSize() {
-                    // Verificar el tamaño de la pantalla y orientación
-                    if (window.innerWidth > 576) {
-                        enableDraggable();
-                    } else {
-                        stopDraggable();
-                    }
-                }
-        
-                document.addEventListener('DOMContentLoaded', function () {
-                    // Iniciamos el draggable
-                    initDraggable()
-                    // Verificar el tamaño de la pantalla al cargar la página
-                    checkScreenSize();
-        
-                    // Escuchar cambios en el tamaño de la pantalla
-                    window.addEventListener('resize', checkScreenSize);
-        
-                    // Escuchar cambios en la orientación
-                    window.addEventListener('orientationchange', checkScreenSize);
-                });
-            </script>
+            });
+        }
+
+        function stopDraggable() {
+            // Eliminamos draggable-item a los clientes
+            draggableTable.forEach(item => item.classList.remove('draggable-item'));
+        }
+
+        function enableDraggable() {
+            // Agregamos draggable-item a los clientes
+            draggableTable.forEach(item => item.classList.add('draggable-item'));
+        }
+
+        function checkScreenSize() {
+            // Verificar el tamaño de la pantalla y orientación
+            if (window.innerWidth > 576) {
+                enableDraggable();
+            } else {
+                stopDraggable();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Iniciamos el draggable
+            initDraggable()
+            // Verificar el tamaño de la pantalla al cargar la página
+            checkScreenSize();
+
+            // Escuchar cambios en el tamaño de la pantalla
+            window.addEventListener('resize', checkScreenSize);
+
+            // Escuchar cambios en la orientación
+            window.addEventListener('orientationchange', checkScreenSize);
+        });
+    </script>
 </body>
 
 </html>
