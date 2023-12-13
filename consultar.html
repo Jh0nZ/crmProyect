@@ -1,64 +1,33 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mostrar Datos</title>
-    <!-- Agrega la referencia a jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <title>Ejemplo Fetch</title>
 </head>
-
 <body>
 
-    <div id="funnelData"></div>
+<script>
+    // Supongamos que tienes una variable que contiene el phase_id
+    var phase_id = 1; // Puedes cambiar esto según tu necesidad
 
-    <script>
-        $(document).ready(function () {
-            $.ajax({
-                url: 'resources/include/obtenerFases.php',
-                type: 'GET',
-                dataType: 'json',
-                success: function (data) {
-                    if (data.hasOwnProperty('error')) {
-                        // Manejar el caso de error
-                        alert(data.error);
-                    } else {
-                        // Procesar y mostrar los datos
-                        console.log(data);
-                        displayFunnelData(data);
-                    }
-                },
-                error: function (xhr, status, error) {
-                    // Manejar errores de la solicitud AJAX
-                    console.error(xhr.responseText);
-                }
-            });
-
-            function displayFunnelData(data) {
-                var html = '<h2>Funnel Data</h2>';
-
-                for (var funnelName in data) {
-                    if (data.hasOwnProperty(funnelName)) {
-                        var funnel = data[funnelName];
-                        html += '<h3>Embudo: ' + funnelName + '</h3>';
-                        html += '<ul>';
-
-                        for (var i = 0; i < funnel.length; i++) {
-                            var phaseName = funnel[i];
-                            html += '<li>Fase: ' + phaseName + '</li>';
-                        }
-
-                        html += '</ul>';
-                    }
-                }
-
-                // Agregar el HTML al elemento con id 'funnelData'
-                $('#funnelData').html(html);
-            }
-        });
-    </script>
+    // Configurar la solicitud
+    fetch('resources/crud/getClient.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'phase_id=' + phase_id,
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Mostrar los resultados en la consola
+        console.log(data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+</script>
 
 </body>
-
 </html>
