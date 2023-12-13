@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/resources/lib/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/draggable/1.0.0/draggable.bundle.legacy.min.js"></script>
     <script defer src="/resources/lib/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         body {
             padding: 0;
@@ -69,6 +70,8 @@
             align-items: center;
             padding: 10px;
             gap: 20px;
+            overflow-y: scroll;
+            overflow-x: hidden;
         }
 
         .barraLateral a {
@@ -77,6 +80,7 @@
             font-weight: 600;
             width: 100%;
             text-align: center;
+            
         }
 
         .contenidoPc {
@@ -99,10 +103,11 @@
             height: 5%;
             padding: 10px;
             align-content: center;
+            
         }
 
         .fasesContenedor {
-            background-color: aqua;
+            background-color: #455d7a;
             height: 95%;
             padding: 20px;
             overflow-x: auto;
@@ -121,17 +126,21 @@
         }
 
         .faseContenedor {
-            background-color: #ffebbb;
+            background-color: #233142;
             min-width: 300px;
             max-width: 300px;
             border-radius: 5px;
+            color:white;
         }
-
+        .card-subtitle {
+            color: #ccc;
+            font-weight: 100;
+        }
         .cliente {
-            background-color: chartreuse;
+            background-color: #e7eaf6;
             color: black;
-            padding: 10px;
-            margin: 5px;
+            padding-top: 10px;
+            
             border-radius: 5px;
         }
 
@@ -196,18 +205,17 @@
             </div>
             <div class="col-11 d-flex flex-column contenidoPc">
                 <div class="containter-fluid row g-0 d-flex barraSuperior">
-                    <div class="col-2">
-                        <div class="dropdown">
-                            <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                Dropdown button
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </div>
+ 
+                    <div class="dropdown col-2 ">
+                        <button class="dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Dropdown button
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
                     </div>
                     <div class="col-8 row buscadorCompleto">
                         <input type="text" class="col-10 buscadorTexto">
@@ -221,21 +229,47 @@
                     <div class="card faseContenedor">
                         <div class="card-body">
                             <h5 class="card-title text-center">Nombre fase1</h5>
-                            <h6 class="card-subtitle mb-2 text-body-secondary text-center">3 leads: 0$ </h6>
+                            <h6 class="card-subtitle text-white mb-2 text-center">3 leads: 0$ </h6>
                             <div class="draggable-item cliente" id="item1">Cliente 1</div>
-                            <div class="draggable-item cliente" id="item2">Cliente 2</div>
+
+                            <div class="cliente row">
+                                <div class="col-2">
+                                    <!-- Icono de persona a la izquierda -->
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fas fa-user fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </div>
+                                <div class="row col-10">
+                                    <!-- Información a la derecha -->
+                                    <div class="col-8">
+                                        <p>nombre</p>
+                                    </div>
+                                    <div class="col-4">
+                                        <p>fecha</p>
+                                    </div>
+                                    <div class="col-8">
+                                        <p>$0</p>
+                                    </div>
+                                    <div class="col-4">
+                                        <p>tarea</p>
+                                    </div>
+                                    <!-- Puedes agregar más información aquí -->
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     <div class="card faseContenedor">
                         <div class="card-body">
                             <h5 class="card-title text-center">Nombre fase2</h5>
-                            <h6 class="card-subtitle mb-2 text-body-secondary text-center">4 leads: 0$ </h6>
+                            <h6 class="card-subtitle mb-2 text-center">4 leads: 0$ </h6>
                         </div>
                     </div>
                     <div class="card faseContenedor">
                         <div class="card-body">
                             <h5 class="card-title text-center">Nombre fase3</h5>
-                            <h6 class="card-subtitle mb-2 text-body-secondary text-center">5 leads: 0$ </h6>
+                            <h6 class="card-subtitle mb-2 text-center">5 leads: 0$ </h6>
                         </div>
                     </div>
                 </div>
