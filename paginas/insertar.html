@@ -17,7 +17,7 @@
         <h2>Nuevo Cliente</h2>
 
         <!-- Tu formulario aquí -->
-        <form class="row g-3 needs-validation" novalidate>
+        <form class="row g-3 needs-validation" action="../resources/crud/newClient.php" method="post" novalidate>
             <div class="col-md-6">
                 <label for="validationCustom01" class="form-label">Nombre</label>
                 <input type="text" class="form-control" name="first_name" value="" required>
@@ -70,25 +70,6 @@
                     if (!form.checkValidity()) {
                         event.preventDefault()
                         event.stopPropagation()
-                    } else {
-                        mData = new FormData(form);
-
-                        // Enviar datos mediante Fetch
-                        fetch('../resources/crud/newClient.php', {
-                                method: 'POST',
-                                body: formData
-                            })
-                            .then(response => {
-                                // Manejar la respuesta como desees
-                                if (response.ok) {
-                                    console.log('Formulario enviado con éxito');
-                                    window.close(); // Cerrar la ventana después de enviar el formulario
-                                } else {
-                                    console.error('Error al enviar el formulario');
-                                    window.close(); 
-                                }
-                            })
-                            .catch(error => console.error('Error:', error));
                     }
 
                     form.classList.add('was-validated')
@@ -104,6 +85,30 @@
 
             // Establecer el valor del campo de fecha al valor de hoy
             document.getElementById("validationCreationDate").value = today;
+
+            // Agregar el evento de submit al formulario
+            document.querySelector('form').addEventListener('submit', function (event) {
+                event.preventDefault();
+                var form = event.target;
+
+                // Realizar la solicitud AJAX
+                fetch(form.action, {
+                    method: form.method,
+                    body: new URLSearchParams(new FormData(form)),
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.close_window) {
+                        window.close(); // Cerrar la ventana emergente
+                    } else {
+                        window.close();
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            });
         });
     </script>
 
