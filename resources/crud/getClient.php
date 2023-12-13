@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once("config.php");
+require_once("../include/config.php");
 
 // Obtener el phase_id desde JavaScript (suponiendo que se pasa a través de un método POST)
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo json_encode(array("error" => "No hay clientes"));
     }
 } else {
-    echo json_encode(array("error" => "Acceso no autorizado"));
+    echo json_encode(array("error" => "Solo post"));
 }
 
 // Cerrar la conexión
