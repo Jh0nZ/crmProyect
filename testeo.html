@@ -246,57 +246,17 @@
             </div>
             <div class="col-11 d-flex flex-column contenidoPc">
                 <div class="containter-fluid row g-0 d-flex barraSuperior">
-                    
-                    <script>
-                        $(document).ready(function () {
-                            $.ajax({
-                                url: 'resources/include/obtenerFases.php',
-                                type: 'GET',
-                                dataType: 'json',
-                                success: function (data) {
-                                    if (data.hasOwnProperty('error')) {
-                                        // Manejar el caso de error
-                                        alert(data.error);
-                                    } else {
-                                        // Procesar y mostrar los datos
-                                        console.log(data);
-                                        displayFunnelData(data);
-                                    }
-                                },
-                                error: function (xhr, status, error) {
-                                    // Manejar errores de la solicitud AJAX
-                                    console.error(xhr.responseText);
-                                }
-                            });
-                    
-                            function displayFunnelData(data) {
-                                var html = '';
-                    
-                                // Generar el botón y el menú desplegable
-                                html += '<div class="dropdownMio d-flex col-2">';
-                                html += '<button class="col-9 btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">';
-                                html += 'Embudo &#9660;';
-                                html += '</button>';
-                                html += '<ul class="dropdown-menu">';
-                    
-                                for (var funnelName in data) {
-                                    if (data.hasOwnProperty(funnelName)) {
-                                        var funnel = data[funnelName];
-                    
-                                        // Agregar cada embudo como un elemento del menú desplegable
-                                        html += '<li><a class="dropdown-item" href="#">' + funnelName + '</a></li>';
-                                    }
-                                }
-                    
-                                html += '</ul>';
-                                html += '</div>';
-                    
-                                // Agregar el HTML al elemento con id 'funnelData'
-                                $('#funnelData').html(html);
-                            }
-                        });
-                    </script>
-
+                    <div class="dropdownMio d-flex col-2">
+                        <button class="col-9 btn btn-primary " type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false" id="embudoButton">
+                            Embudo &#9660;
+                        </button>
+                        <ul class="dropdown-menu" id="embudoDropdown">
+                            <li><a class="dropdown-item" href="#">Embudo 1</a></li>
+                            <li><a class="dropdown-item" href="#">Embudo2</a></li>
+                            <li><a class="dropdown-item" href="#">Embudo3</a></li>
+                        </ul>
+                    </div>
                     <div class="col-8 row buscadorCompleto">
                         <input type="text" class="col-10 buscadorTexto">
                         <button type="button" class="btn btn-primary col-2">Buscar</button>
@@ -575,6 +535,32 @@
 
             // Llama a la función para activar el modo de pantalla completa
             openFullscreen();
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: 'resources/include/obtenerFases.php',
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    // Actualiza el contenido del botón
+                    $('#embudoButton').html(data['Embudo de Ventas'][0]+'&#9660;');
+
+                    // Actualiza el contenido de la lista desplegable
+                    var embudoDropdown = $('#embudoDropdown');
+                    embudoDropdown.empty(); // Borra cualquier contenido existente
+
+                    // Agrega cada fase como un elemento de lista
+                    $.each(data['Embudo de Ventas'], function (index, fase) {
+                        var listItem = $('<li><a class="dropdown-item" href="#">' + fase + '</a></li>');
+                        embudoDropdown.append(listItem);
+                    });
+                },
+                error: function () {
+                    console.error('Error al obtener los datos desde op.php');
+                }
+            });
         });
     </script>
 </body>
