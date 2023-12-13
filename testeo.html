@@ -572,11 +572,68 @@
                                 faseContenedor.innerHTML = '<div class="card-body d-flex flex-column">' +
                                     '<h5 class="card-title text-center">' + phase.phase_name + '</h5>' +
                                     '<h6 class="card-subtitle mb-2 text-center">0 leads: 0$</h6>' +
-                                    '<div class="contenedorClientes" id="' + phase.phase_id + '"></div>' +
+                                    '<div class="contenedorClientes" id="contenedor_phase_' + phase.phase_id + '"></div>' +
                                     '</div>';
 
                                 fasesContenedor.appendChild(faseContenedor);
                             });
+
+                            phases.forEach(function (phase) {
+                                // Obtener el contenedor de clientes por phase_id
+                                var contenedorClientes = document.getElementById('contenedor_phase_' + phase.phase_id);
+
+
+                                // Limpiar el contenido existente
+                                contenedorClientes.innerHTML = '';
+
+                                // Realizar la solicitud fetch para obtener los clientes
+                                fetch('resources/crud/getClient.php', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({ phase_id: phase.phase_id })
+                                })
+                                    .then(response => response.json())
+                                    .then(clientData => {
+                                        // Agregar clientes al contenedor
+                                        clientData.forEach(function (cliente) {
+                                            // Crear el elemento de cliente
+                                            var clienteElement = document.createElement('div');
+                                            clienteElement.className = 'draggable-item cliente row';
+                                            clienteElement.id = cliente.client_id;
+
+                                            // Configurar el contenido del cliente
+                                            clienteElement.innerHTML = '<div class="col-2">' +
+                                                '<span class="fa-stack fa-lg">' +
+                                                '<i class="fas fa-circle fa-stack-2x"></i>' +
+                                                '<i class="fas fa-user fa-stack-1x fa-inverse"></i>' +
+                                                '</span>' +
+                                                '</div>' +
+                                                '<div class="row col-10">' +
+                                                '<div class="col-8">' +
+                                                '<p>' + cliente.first_name + '</p>' +
+                                                '</div>' +
+                                                '<div class="col-4">' +
+                                                '<p>' + cliente.creation_date + '</p>' +
+                                                '</div>' +
+                                                '<div class="col-8">' +
+                                                '<p>$0</p>' +
+                                                '</div>' +
+                                                '<div class="col-4">' +
+                                                '<p>tarea</p>' +
+                                                '</div>' +
+                                                '</div>';
+
+                                            // Agregar el elemento de cliente al contenedor
+                                            contenedorClientes.appendChild(clienteElement);
+                                        });
+                                    })
+                                    .catch(error => {
+                                        console.error('Error al obtener los clientes para la fase con phase_id:', phase.phase_id);
+                                    });
+                            });
+
                         }
                     }
                 },

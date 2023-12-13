@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $clientes = $result->fetch_all(MYSQLI_ASSOC);
         echo json_encode($clientes);
     } else {
-        echo json_encode(array("error" => "No hay clientes"));
+        echo json_encode([]);
     }
 } else {
     echo json_encode(array("error" => "Solo post"));
