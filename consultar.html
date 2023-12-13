@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mostrar Datos</title>
+    <!-- Agrega la referencia a jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+
+<div id="funnelData"></div>
+
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            url: 'resources/include/obtenerFases.php', // Reemplaza 'tuscript.php' con la ruta correcta de tu script PHP
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                if (data.hasOwnProperty('error')) {
+                    // Manejar el caso de error
+                    alert(data.error);
+                } else {
+                    // Procesar y mostrar los datos
+                    displayFunnelData(data);
+                }
+            },
+            error: function(xhr, status, error) {
+                // Manejar errores de la solicitud AJAX
+                console.error(xhr.responseText);
+            }
+        });
+
+       function displayFunnelData(data) {
+            var html = '<h2>Funnel Data</h2>';
+
+            for (var i = 0; i < data.length; i++) {
+                var funnel = data[i];
+                html += '<h3>Embudo: ' + funnel.funnel_name + '</h3>';
+                html += '<ul>';
+
+                for (var j = 0; j < funnel.phases.length; j++) {
+                    var phase = funnel.phases[j];
+                    html += '<li>Fase: ' + phase.phase_name + '</li>';
+                }
+
+                html += '</ul>';
+            }
+
+            // Agregar el HTML al elemento con id 'funnelData'
+            $('#funnelData').html(html);
+        }
+    });
+</script>
+
+</body>
+</html>

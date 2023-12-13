@@ -24,8 +24,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Verificar la contraseña usando password_verify
         if (password_verify($password, $storedPassword)) {
             // Inicio de sesión exitoso
+            $user_id = $row["user_id"];
+            $sql = "SELECT store_id FROM store WHERE user_id = '$user_id'";
+            $storeResult = $conn->query($sql);
+            $storeRow = $storeResult->fetch_assoc();
+
+            // guardamos informacion en la sesion
             $_SESSION["username"] = $username;
-            $_SESSION["user_id"] = $row["user_id"];
+            $_SESSION["user_id"] = $user_id;
+            $_SESSION["store_id"] = $storeRow["store_id"];
+
             $response["success"] = true;
             $response["message"] = "Inicio de sesión exitoso";
         } else {
