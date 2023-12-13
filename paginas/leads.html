@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+    <link rel="stylesheet" href="../resources/lib/bootstrap.min.css">
+    <script defer src="../resources/lib/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .principal {
+            background-color: greenyellow;
+            height: 100vh;
+        }
+
+        .principalMovil {
+            background-color: #ffebbb;
+            height: 100vh;
+        }
+
+        .boton-bar {
+            height: 10%;
+        }
+
+        .contenidoMovil {
+            height: 90%;
+            background-color: azure;
+        }
+
+        .botonesNavMovil {
+            text-decoration: none;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 8px;
+            color: #233142;
+        }
+
+        .botonesNavMovil p {
+
+            font-size: 12px;
+        }
+
+        .active {
+            color: #f95959;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="containter-fluid principal d-none d-md-block">
+        computadora
+    </div>
+    <div class="containter-fluid d-flex flex-column principalMovil d-block d-md-none">
+        <!-- contenido principal -->
+        <div class="contenidoMovil">
+            Contenido Leads
+        </div>
+
+        <!-- botton-bar -->
+        <div class="boton-bar d-flex">
+            <a href="bots.html" class="col-2 botonesNavMovil">
+                <svg class="bi" width="32" height="32" fill="currentColor">
+                    <use xlink:href="../resources/icons/bootstrap-icons.svg#robot" />
+                </svg>
+                <p>Bots</p>
+            </a>
+            <a href="productos.html" class="col-2 botonesNavMovil">
+                <svg class="bi" width="32" height="32" fill="currentColor">
+                    <use xlink:href="../resources/icons/bootstrap-icons.svg#bag-fill" />
+                </svg>
+                <p>Productos</p>
+            </a>
+            <a href="chats.html" class="col-2 botonesNavMovil">
+                <svg class="bi" width="32" height="32" fill="currentColor">
+                    <use xlink:href="../resources/icons/bootstrap-icons.svg#chat-dots" />
+                </svg>
+                <p>Chats</p>
+            </a>
+            <a href="leads.html" class="col-2 botonesNavMovil active">
+                <svg class="bi" width="32" height="32" fill="currentColor">
+                    <use xlink:href="../resources/icons/bootstrap-icons.svg#people" />
+                </svg>
+                <p>Leads</p>
+            </a>
+            <a href="campaings.html" class="col-2 botonesNavMovil">
+                <svg class="bi" width="32" height="32" fill="currentColor">
+                    <use xlink:href="../resources/icons/bootstrap-icons.svg#megaphone-fill" />
+                </svg>
+                <p>Campañas</p>
+            </a>
+            <a href="../resources/include/logout.php" class="col-2 botonesNavMovil">
+                <svg class="bi" width="32" height="32" fill="currentColor">
+                    <use xlink:href="../resources/icons/bootstrap-icons.svg#box-arrow-left" />
+                </svg>
+                <p>Logout</p>
+            </a>
+        </div>
+</body>
+
+</html>

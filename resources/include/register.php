@@ -26,9 +26,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             $user_id = $conn->insert_id;
 
-            $_SESSION["username"] = $username;
-            $_SESSION["user_id"] = $user_id;
-
             // Crear tienda para el usuario
             $store_name = $username . "_Store";
             $createStoreSql = "INSERT INTO store (user_id, name) VALUES ('$user_id', '$store_name')";
@@ -55,6 +52,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $createPhaseSql = "INSERT INTO phase (funnel_id, name, description) VALUES ('$funnel_id', '$phase_name', '$phase_description')";
                 $conn->query($createPhaseSql);
             }
+
+            $_SESSION["username"] = $username;
+            $_SESSION["user_id"] = $user_id;
+            $_SESSION["store_id"] = $store_id;
 
             // Responder exitosamente
             $response = array("success" => true, "message" => "Usuario registrado exitosamente");
