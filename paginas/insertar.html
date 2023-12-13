@@ -58,17 +58,6 @@
     </div>
 
     <script>
-        function closePopup() {
-            // Cerrar la ventana emergente
-            window.close();
-        }
-
-        function submitForm() {
-            console.log("test");
-        }
-    </script>
-
-    <script>
         (() => {
             'use strict'
 
@@ -81,6 +70,25 @@
                     if (!form.checkValidity()) {
                         event.preventDefault()
                         event.stopPropagation()
+                    } else {
+                        mData = new FormData(form);
+
+                        // Enviar datos mediante Fetch
+                        fetch('../resources/crud/newClient.php', {
+                                method: 'POST',
+                                body: formData
+                            })
+                            .then(response => {
+                                // Manejar la respuesta como desees
+                                if (response.ok) {
+                                    console.log('Formulario enviado con éxito');
+                                    window.close(); // Cerrar la ventana después de enviar el formulario
+                                } else {
+                                    console.error('Error al enviar el formulario');
+                                    window.close(); 
+                                }
+                            })
+                            .catch(error => console.error('Error:', error));
                     }
 
                     form.classList.add('was-validated')
