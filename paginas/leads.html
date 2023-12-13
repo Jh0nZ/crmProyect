@@ -213,6 +213,21 @@
             })
             .catch(error => console.error('Error:', error));
     </script>
+    <script>
+        function openPopup() {
+            // Abrir la ventana emergente
+            var popup = window.open('insertar.html', 'Formulario Cliente', 'width=400,height=400');
+
+            // Verificar si la ventana emergente se cerró
+            var interval = setInterval(function () {
+                if (popup.closed) {
+                    // La ventana emergente se cerró, actualizar la página principal
+                    clearInterval(interval);
+                    location.reload(true); // true for force reloading from the server
+                }
+            }, 500);
+        }
+    </script>
 </head>
 
 <body>
@@ -539,21 +554,7 @@
             })
         });
     </script>
-    <script>
-        function openPopup() {
-            // Abrir la ventana emergente
-            var popup = window.open('insertar.html', 'Formulario Cliente', 'width=400,height=400');
 
-            // Verificar si la ventana emergente se cerró
-            var interval = setInterval(function () {
-                if (popup.closed) {
-                    // La ventana emergente se cerró, actualizar la página principal
-                    clearInterval(interval);
-                    location.reload(true); // true for force reloading from the server
-                }
-            }, 500);
-        }
-    </script>
 </body>
 
 </html>
