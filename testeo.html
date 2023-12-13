@@ -590,9 +590,9 @@
                                 fetch('resources/crud/getClient.php', {
                                     method: 'POST',
                                     headers: {
-                                        'Content-Type': 'application/json'
+                                        'Content-Type': 'application/x-www-form-urlencoded',
                                     },
-                                    body: JSON.stringify({ phase_id: phase.phase_id })
+                                    body: 'phase_id=' + phase.phase_id,
                                 })
                                     .then(response => response.json())
                                     .then(clientData => {
