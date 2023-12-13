@@ -21,9 +21,16 @@ if (isset($_SESSION["user_id"]) && isset($_SESSION["store_id"]) && isset($_SESSI
     if ($result->num_rows > 0) {
         $data = array();
         while ($row = $result->fetch_assoc()) {
-            $data[] = $row;
+            $funnel_name = $row['funnel_name'];
+            $phase_name = $row['phase_name'];
+            
+            // Agregar el phase_name al array asociativo
+            if (!isset($data[$funnel_name])) {
+                $data[$funnel_name] = array();
+            }
+            $data[$funnel_name][] = $phase_name;
         }
-
+        
         header('Content-Type: application/json');
         echo json_encode($data);
     } else {
