@@ -4,7 +4,7 @@ require_once("../include/config.php");
 
 // Obtener el phase_id desde JavaScript (suponiendo que se pasa a través de un método POST)
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $store_id = $_POST["store_id"];
+    $store_id = $_SESSION["store_id"];
     $first_name = $_POST["first_name"];
     $phase_id = $_POST["phase_id"];
     $last_name = isset($_POST["last_name"]) ? $_POST["last_name"] : null;
