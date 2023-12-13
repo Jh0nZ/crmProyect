@@ -41,7 +41,6 @@ if (isset($_SESSION["user_id"]) && isset($_SESSION["store_id"]) && isset($_SESSI
 
     $conn->close();
 } else {
-    header("Location: ../../index.html");
     header('Content-Type: application/json');
     echo json_encode(array("error" => "Usuario no autenticado."));
 }
