@@ -637,13 +637,15 @@
                         draggable: '.draggable-item',
                         mirror: {
                             constrainDimensions: true,
-                        },
-                        onSort: function (evt) {
-
-                            // Aquí puedes enviar la información al servidor mediante una solicitud AJAX
-                            updatePhaseIdInDatabase(1, 1);
                         }
                     })
+                    draggableInstance.on('drag:end', (event, draggable) => {
+                        const container = event.target.closest('.contenedorClientes');
+                        if (container) {
+                        // Ejecuta tu función con el draggable y el contenedor como argumentos
+                        updatePhaseIdInDatabase(draggable.getAttribute('data-client-id'), container.getAttribute('data-phase-id'));
+                        }
+                    });
                 }
 
                 function stopDraggable() {
