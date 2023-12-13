@@ -639,13 +639,9 @@
                             constrainDimensions: true,
                         },
                         onSort: function (evt) {
-                            const draggedItem = evt.data.dragEvent.source;
-                            const newContainer = evt.data.newContainer;
-                            const phaseId = newContainer.getAttribute('data-phase-id'); // Obtener phase_id del atributo data-phase-id
-                            const clientId = draggedItem.getAttribute('data-client-id'); // Obtener client_id del atributo data-client-id
 
                             // Aquí puedes enviar la información al servidor mediante una solicitud AJAX
-                            updatePhaseIdInDatabase(clientId, phaseId);
+                            updatePhaseIdInDatabase(1, 1);
                         }
                     })
                 }
